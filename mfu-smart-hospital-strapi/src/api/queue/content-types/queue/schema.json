@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "queues",
+  "info": {
+    "singularName": "queue",
+    "pluralName": "queues",
+    "displayName": "Queue",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "queue_number": {
+      "type": "biginteger"
+    },
+    "queue_time": {
+      "type": "datetime"
+    },
+    "doctor": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::doctor.doctor",
+      "inversedBy": "queues"
+    },
+    "patient": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::patient.patient"
+    }
+  }
+}

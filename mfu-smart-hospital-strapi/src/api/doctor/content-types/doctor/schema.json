@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "doctors",
+  "info": {
+    "singularName": "doctor",
+    "pluralName": "doctors",
+    "displayName": "Doctor",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "department": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::department.department",
+      "inversedBy": "doctors"
+    },
+    "queues": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::queue.queue",
+      "mappedBy": "doctor"
+    }
+  }
+}

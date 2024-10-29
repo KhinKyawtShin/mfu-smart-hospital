@@ -369,12 +369,12 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiFruitFruit extends Struct.CollectionTypeSchema {
-  collectionName: 'fruits';
+export interface ApiDepartmentDepartment extends Struct.CollectionTypeSchema {
+  collectionName: 'departments';
   info: {
-    displayName: 'Fruit';
-    pluralName: 'fruits';
-    singularName: 'fruit';
+    displayName: 'Department';
+    pluralName: 'departments';
+    singularName: 'department';
   };
   options: {
     draftAndPublish: true;
@@ -383,12 +383,106 @@ export interface ApiFruitFruit extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    fruit_name: Schema.Attribute.String;
-    fruit_number: Schema.Attribute.BigInteger;
+    doctors: Schema.Attribute.Relation<'oneToMany', 'api::doctor.doctor'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::fruit.fruit'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::department.department'
+    > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
+  collectionName: 'doctors';
+  info: {
+    description: '';
+    displayName: 'Doctor';
+    pluralName: 'doctors';
+    singularName: 'doctor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    department: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::department.department'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::doctor.doctor'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    queues: Schema.Attribute.Relation<'oneToMany', 'api::queue.queue'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
+  collectionName: 'patients';
+  info: {
+    displayName: 'Patient';
+    pluralName: 'patients';
+    singularName: 'patient';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::patient.patient'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiQueueQueue extends Struct.CollectionTypeSchema {
+  collectionName: 'queues';
+  info: {
+    description: '';
+    displayName: 'Queue';
+    pluralName: 'queues';
+    singularName: 'queue';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    doctor: Schema.Attribute.Relation<'manyToOne', 'api::doctor.doctor'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::queue.queue'> &
+      Schema.Attribute.Private;
+    patient: Schema.Attribute.Relation<'oneToOne', 'api::patient.patient'>;
+    publishedAt: Schema.Attribute.DateTime;
+    queue_number: Schema.Attribute.BigInteger;
+    queue_time: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -900,7 +994,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::fruit.fruit': ApiFruitFruit;
+      'api::department.department': ApiDepartmentDepartment;
+      'api::doctor.doctor': ApiDoctorDoctor;
+      'api::patient.patient': ApiPatientPatient;
+      'api::queue.queue': ApiQueueQueue;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
