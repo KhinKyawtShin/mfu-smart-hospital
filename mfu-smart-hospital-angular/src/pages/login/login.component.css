@@ -1,0 +1,33 @@
+/* styles.css or login.component.css */
+
+  .container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .auth-section {
+    display: flex;
+    width: 100%; /* Take full width */
+  }
+  
+  app-auth-image {
+    flex: 1; /* Take 50% of the width */
+  }
+  
+  .form-section {
+    flex: 1; /* Take 50% of the width */
+    display: flex; /* Center form vertically */
+    align-items: center; /* Center form vertically */
+    justify-content: center; /* Center form horizontally */
+    flex-direction: column; /* Stack elements vertically */
+  }
+  
+  .form-group {
+    margin-bottom: 1rem; /* Spacing between form fields */
+  }
+  
+  button {
+    width: 100%; /* Full width button */
+    padding: 0.5rem; /* Button padding */
+  }
+  

@@ -1,0 +1,15 @@
+/* auth-image.component.css */
+
+.image-container {
+    width: 100%; /* Take full width of the parent */
+    height: 100%; /* Take full height of the parent */
+    margin: 0;
+    padding: 0;
+}
+  
+.image-container img {
+    width: 100%; /* Scale image responsively */
+    height: 100%; /* Scale image responsively */
+    object-fit: cover; /* Cover the container without distortion */
+}
+  
