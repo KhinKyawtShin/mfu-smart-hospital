@@ -1,0 +1,10 @@
+<div class="queue-container">
+  <h1>Patient Queue</h1>
+  <div class="queue-box">
+    <h2>{{ queueNumber }}</h2>
+    <p>Current patient queue: {{ currentQueue }}</p>
+    <p>Estimated wait time: {{ estimatedWaitTime }}</p>
+  </div>
+  <!-- Back button placed outside of the box -->
+  <button class="back-button" (click)="goBack()">Back</button>
+</div>

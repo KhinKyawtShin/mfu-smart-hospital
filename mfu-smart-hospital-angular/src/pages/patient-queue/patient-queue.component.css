@@ -1,0 +1,40 @@
+.queue-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.queue-container h1 {
+  color: #880016; /* Set the color for the "Patient Queue" title */
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.queue-box {
+  border: 1px solid #ccc;
+  padding: 40px; /* Increase padding to make the box appear larger */
+  border-radius: 8px;
+  margin-top: 20px;
+  width: 1000px;  /* Adjust width */
+  height: 250px; /* Adjust height */
+}
+
+.queue-box h2 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #B8001F; /* Set background color for the button */
+  color: #ffffff; /* Set text color for the button */
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow for the button */
+  transition: background-color 0.3s ease;
+}
