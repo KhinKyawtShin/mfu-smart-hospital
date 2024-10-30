@@ -4,7 +4,7 @@
   align-items: center;
   text-align: center;
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 200px;
 }
 
 .queue-container h1 {
@@ -19,7 +19,7 @@
   border-radius: 8px;
   margin-top: 20px;
   width: 1000px;  /* Adjust width */
-  height: 250px; /* Adjust height */
+  height: 300px; /* Adjust height */
 }
 
 .queue-box h2 {
