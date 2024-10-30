@@ -1,27 +1,31 @@
-.menu-bar {
-  background-color: #333;
-  overflow: hidden;
+.title{
+  margin-left: 20px;
 }
 
-.menu-bar ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
+.custom-navbar {
+  background-color: #B8001F !important; /* Set background color */
 }
 
-.menu-bar ul li {
-  float: left;
+.custom-navbar .nav-link {
+  color: white; /* Change text color for better contrast */
 }
 
-.menu-bar ul li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 20px;
-  text-decoration: none;
+.custom-navbar .navbar-brand {
+  color: white; /* Change brand text color */
 }
 
-.menu-bar ul li a:hover {
-  background-color: #575757;
+.custom-navbar .nav-link:hover {
+  color: #FFD700; /* Change to gold or any hover color you prefer */
+}
+
+.custom-navbar .navbar-nav {
+  margin-left: auto; /* Aligns nav items to the right */
+}
+
+.navbar-nav .nav-item {
+  margin-right: 20px; /* Adjust this value as needed */
+}
+
+.navbar-nav .nav-item:last-child {
+  margin-right: 10px; /* Remove margin from the last item */
 }
