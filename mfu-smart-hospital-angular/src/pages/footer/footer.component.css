@@ -1,0 +1,31 @@
+.footer {
+    background-color: #B8001F !important; 
+    padding: 20px 0;
+    color: #FFFFFF;
+  }
+  
+  .footer a {
+    text-decoration: none;
+    color: #FFFFFF !important;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  .footer .list-unstyled li {
+    margin-bottom: 7px; /* Adjust the value as needed */
+  }
+
+  .info p{
+    font-size: 16px;
+    margin-bottom: -3px;
+  }
+
+  h5{
+    margin-bottom: 22px;
+  }
+  
+  .text-center{
+    background-color: #B8001F !important;
+  }
