@@ -3,6 +3,7 @@
   .container {
     display: flex;
     height: 100vh; /* Full viewport height */
+    overflow: hidden;
   }
   
   .auth-section {
@@ -10,6 +11,13 @@
     width: 100%; /* Take full width */
   }
   
+  h2 {
+    color: #B8001F;
+    font-weight: 800;
+    font-size: 35px;
+    margin-bottom: 50px;
+  }
+
   app-auth-image {
     flex: 1; /* Take 50% of the width */
   }
@@ -23,11 +31,48 @@
   }
   
   .form-group {
-    margin-bottom: 1rem; /* Spacing between form fields */
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    width: 100%;
+    margin-bottom: 35px;
+    font-size: 20px;
+  }
+
+  .form-group input {
+    width: 600px;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
   }
   
+  .link {
+    display: flex;
+    font-size: 17px;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 35px;
+  }
+
+  .link a {
+    color: #F00E0E;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+  }
+
   button {
-    width: 100%; /* Full width button */
+    background-color: #B8001F;
+    font-size: 20px;
+    font-weight: 300;
+    color: white;
+    width: 200px;
+    height: 60px;
     padding: 0.5rem; /* Button padding */
+    border: none;
+    border-radius: 10px;
   }
   
