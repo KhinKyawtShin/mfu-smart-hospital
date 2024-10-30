@@ -481,8 +481,8 @@ export interface ApiQueueQueue extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     patient: Schema.Attribute.Relation<'oneToOne', 'api::patient.patient'>;
     publishedAt: Schema.Attribute.DateTime;
-    queue_number: Schema.Attribute.BigInteger;
-    queue_time: Schema.Attribute.DateTime;
+    queueNumber: Schema.Attribute.BigInteger;
+    queueTime: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

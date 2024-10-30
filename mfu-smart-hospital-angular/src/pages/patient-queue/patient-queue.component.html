@@ -1,9 +1,13 @@
+<app-header></app-header>
 <div class="queue-container">
   <h1>Patient Queue</h1>
   <div class="queue-box">
     <h2>{{ queueNumber }}</h2>
-    <p>Current patient queue: {{ currentQueue }}</p>
-    <p>Estimated wait time: {{ estimatedWaitTime }}</p>
+    <p>Total patient queue: {{ totalQueues }}</p>
+    <p>Estimated wait time: {{ queueTime }}</p>
   </div>
   <button class="back-button" (click)="goBack()">Back</button>
 </div>
+<app-footer></app-footer>
+
+
