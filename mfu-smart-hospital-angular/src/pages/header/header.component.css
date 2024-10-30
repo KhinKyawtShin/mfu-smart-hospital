@@ -1,0 +1,27 @@
+.menu-bar {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.menu-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.menu-bar ul li {
+  float: left;
+}
+
+.menu-bar ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.menu-bar ul li a:hover {
+  background-color: #575757;
+}
