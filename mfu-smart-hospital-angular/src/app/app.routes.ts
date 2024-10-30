@@ -4,6 +4,10 @@ import { RegisterComponent} from '../pages/register/register.component';
 import { PatientQueueComponent } from '../pages/patient-queue/patient-queue.component';
 import { AdminLoginComponent } from '../admin-pages/admin-login/admin-login.component';
 import { AdminRegisterComponent } from '../admin-pages/admin-register/admin-register.component';
+//import { HomeComponent } from '../pages/';
+//import { Service } from '../pages/';
+//import { PatientRecord } from '../pages/';
+//import { History } from '../pages/';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
