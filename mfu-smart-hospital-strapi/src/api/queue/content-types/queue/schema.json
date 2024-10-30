@@ -12,10 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "queue_number": {
+    "queueNumber": {
       "type": "biginteger"
     },
-    "queue_time": {
+    "queueTime": {
       "type": "datetime"
     },
     "doctor": {
