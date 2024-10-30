@@ -1,6 +1,6 @@
 /* styles.css or login.component.css */
 
-  .container {
+.container {
     display: flex;
     height: 100vh; /* Full viewport height */
     overflow: hidden;
