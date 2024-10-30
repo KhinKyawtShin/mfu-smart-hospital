@@ -5,7 +5,7 @@
 
     <!-- Right Side (Login Form) -->
     <div class="form-section">
-      <h2>Login</h2>
+      <h2>MFU SMART HOSPITAL</h2>
       <form (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="email">Email</label>
@@ -17,7 +17,18 @@
           <input type="password" id="password" [(ngModel)]="password" name="password" required />
         </div>
 
-        <button type="submit">Login</button>
+        <div class="link">
+          <span>Don't have an account?</span> 
+          <a href="/register">Register↗</a>
+        </div>
+
+        <div class="button">
+          <button type="submit">Login</button>
+        </div>
+
+        <div class="link">
+          <a href="/admin-login">Login as Admin↗</a>
+        </div>
       </form>
     </div>
   </div>

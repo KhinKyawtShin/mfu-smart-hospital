@@ -1,6 +1,6 @@
 /* styles.css or login.component.css */
 
-  .container {
+.container {
     display: flex;
     height: 100vh; /* Full viewport height */
     overflow: hidden;
@@ -15,7 +15,14 @@
     color: #B8001F;
     font-weight: 800;
     font-size: 35px;
-    margin-bottom: 50px;
+  }
+
+  h3 {
+    color: #B8001F;
+    font-weight: 800;
+    font-size: 30px;
+    margin-top: 5px;
+    margin-bottom: 30px;
   }
 
   app-auth-image {

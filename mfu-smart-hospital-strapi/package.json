@@ -15,6 +15,7 @@
     "@strapi/plugin-users-permissions": "5.1.1",
     "@strapi/strapi": "5.1.1",
     "better-sqlite3": "11.3.0",
+    "mfu-smart-hospital-strapi": "file:",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
@@ -32,6 +33,5 @@
   },
   "strapi": {
     "uuid": "9c2a8dd0-ab12-43cb-804e-b35fcdba62d1"
-    
   }
 }

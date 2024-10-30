@@ -3,8 +3,7 @@
 .image-container {
     width: 100%; /* Take full width of the parent */
     height: 100%; /* Take full height of the parent */
-    margin: 0;
-    padding: 0;
+    background-color: #E46767;
 }
   
 .image-container img {
