@@ -1,0 +1,39 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<app-admin-header></app-admin-header>
+<br>
+<div class="search-box">
+    <div class="col-auto">
+        <input type="search" class="form-control" id="searchAppointment">
+    </div>
+    <button class="search-button" (click)="search()">
+        <span class="material-icons">search</span> Search
+    </button>
+</div>
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Patient</th>
+                <th>Time</th>
+                <th>Queue No.</th>
+                <th>Status</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let appointment of appointments">
+                <td>{{ appointment.id }}</td>
+                <td>{{ appointment.patientName }}</td>
+                <td>{{ appointment.time }}</td>
+                <td>{{ appointment.queueNumber }}</td>
+                <td>{{ appointment.status }}</td>
+                <td>
+                    <button (click)="editAppointment()">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
