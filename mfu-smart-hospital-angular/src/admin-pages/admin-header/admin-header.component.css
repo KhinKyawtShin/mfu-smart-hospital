@@ -1,0 +1,31 @@
+.title{
+    margin-left: 20px;
+  }
+  
+  .custom-navbar {
+    background-color: #B8001F !important; /* Set background color */
+  }
+  
+  .custom-navbar .nav-link {
+    color: white; /* Change text color for better contrast */
+  }
+  
+  .custom-navbar .navbar-brand {
+    color: white; /* Change brand text color */
+  }
+  
+  .custom-navbar .nav-link:hover {
+    color: #FFD700; /* Change to gold or any hover color you prefer */
+  }
+  
+  .custom-navbar .navbar-nav {
+    margin-left: auto; /* Aligns nav items to the right */
+  }
+  
+  .navbar-nav .nav-item {
+    margin-right: 20px; /* Adjust this value as needed */
+  }
+  
+  .navbar-nav .nav-item:last-child {
+    margin-right: 10px; /* Remove margin from the last item */
+  }
