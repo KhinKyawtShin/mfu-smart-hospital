@@ -1,14 +1,37 @@
 <app-header></app-header>
 <div class="queue-container">
   <h1>Patient Queue</h1>
-  <div class="queue-box">
-    <h2>{{ queueNumber }}</h2>
-    <br>
-    <p>Total patient queue: {{ totalQueues }}</p>
-    <p>Estimated wait time: {{ queueTime }}</p>
+
+  <!-- Display message if doctorQueues is empty -->
+  <div *ngIf="doctorQueues.length === 0" class="no-queue">
+    No queues available.
   </div>
+
+  <!-- Table layout for queues -->
+  <table *ngIf="doctorQueues.length > 0" class="queue-table">
+    <thead>
+      <tr>
+        <th>Doctor</th>
+        <th>Current Queue</th>
+        <th>Next Queue</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let queue of doctorQueues">
+        <td>{{ queue.doctorName }}</td>
+        <td>{{ queue.currentQueue || 'N/A' }}</td>
+        <td>{{ queue.nextQueue || 'N/A' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
   <button class="back-button" (click)="goBack()">Back</button>
 </div>
 <app-footer></app-footer>
+
+
+
+
+
 
 
