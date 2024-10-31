@@ -1,41 +1,69 @@
 .queue-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #880016;
   margin-top: 50px;
-  margin-bottom: 50px;
 }
 
-.queue-container h1 {
-  color: #880016; /* Set the color for the "Patient Queue" title */
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.queue-box {
-  border: 1px solid #ccc;
-  padding: 40px; /* Increase padding to make the box appear larger */
+.queue-table {
+  width: 100%;
+  max-width: 1000px;
+  margin: 50px auto;
+  border-collapse: separate;
+  border-spacing: 0;
   border-radius: 8px;
-  margin-top: 20px;
-  width: 1000px;  /* Adjust width */
-  height: 250px; /* Adjust height */
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.queue-box h2 {
-  font-size: 48px;
-  margin: 0;
+.queue-table thead {
+  background-color: #B8001F;
+  color: white;
+}
+
+.queue-table th, .queue-table td {
+  padding: 16px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.queue-table th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.queue-table tbody tr {
+  background-color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+.queue-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.queue-table tbody tr:hover {
+  background-color: #fff3f5;
+}
+
+.queue-table td {
+  color: #555;
 }
 
 .back-button {
   margin-top: 20px;
+  margin-bottom: 200px;
   padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #B8001F; /* Set background color for the button */
-  color: #ffffff; /* Set text color for the button */
+  background-color: #B8001F;
+  color: #fff;
   border: none;
   border-radius: 4px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow for the button */
-  transition: background-color 0.3s ease;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+
+.back-button:hover {
+  background-color: #880016;
+}
+

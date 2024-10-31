@@ -5,6 +5,9 @@ import { PatientQueueComponent } from '../pages/patient-queue/patient-queue.comp
 import { AdminLoginComponent } from '../admin-pages/admin-login/admin-login.component';
 import { AdminRegisterComponent } from '../admin-pages/admin-register/admin-register.component';
 import { CentersComponent } from '../pages/centers/centers.component';
+import { AdminViewAppointmentComponent } from '../admin-pages/admin-view-appointment/admin-view-appointment.component';
+import { AdminHeaderComponent } from '../admin-pages/admin-header/admin-header.component';
+
 //import { HomeComponent } from '../pages/';
 //import { Service } from '../pages/';
 //import { PatientRecord } from '../pages/';
@@ -15,6 +18,8 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent},
     { path: 'admin-login', component: AdminLoginComponent},
     { path: 'admin-register', component: AdminRegisterComponent},
-    { path: 'patientqueue', component: PatientQueueComponent },
     { path: 'centers', component: CentersComponent },
+    { path: 'patient-queue', component: PatientQueueComponent },
+    { path: 'admin-view-appointment', component: AdminViewAppointmentComponent},
+    { path: 'admin-header', component: AdminHeaderComponent},
 ];
