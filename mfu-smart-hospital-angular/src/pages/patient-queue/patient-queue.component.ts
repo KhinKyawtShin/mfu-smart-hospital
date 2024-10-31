@@ -12,9 +12,7 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrls: ['./patient-queue.component.css']
 })
 export class PatientQueueComponent implements OnInit {
-  queueNumber: number = 0;     // Current queue position
-  totalQueues: number = 0;     // Total number of queues
-  queueTime: string = '';      // Estimated wait time for the current queue
+  doctorQueues: any[] = []; // Array to store queue information for each doctor
 
   constructor(private http: HttpClient) {}
 
@@ -23,36 +21,48 @@ export class PatientQueueComponent implements OnInit {
   }
 
   fetchQueueData(): void {
-    this.http.get<any>('http://localhost:1337/api/queues').subscribe(response => {
-      if (response && response.data.length > 0) {
-        let queueData = response.data;
+    this.http.get<any>('http://localhost:1337/api/queues?populate=doctor').subscribe({
+      next: (response) => {
+        console.log('API Response:', response); // Log the API response
 
-        // Sort the queue data by queueTime to ensure correct order
-        queueData.sort((a: any, b: any) => new Date(a.queueTime).getTime() - new Date(b.queueTime).getTime());
-        this.totalQueues = queueData.length;
+        if (response && response.data && response.data.length > 0) {
+          const queueData = response.data;
 
-        // Generate a random current queue number between 1 and totalQueues
-        this.queueNumber = Math.floor(Math.random() * this.totalQueues) + 1;
+          // Group patients by doctor and sort by queue number for each doctor
+          const doctorQueueMap: { [doctorId: string]: any } = {};
 
-        // Check if the queueNumber is the last in the queue list
-        if (this.queueNumber === this.totalQueues) {
-          this.queueTime = '00 hours 00 minutes'; // No wait time for the last queue
+          queueData.forEach((queue: any) => {
+            const doctorId = queue.doctor?.id;
+            if (doctorId) {
+              if (!doctorQueueMap[doctorId]) {
+                doctorQueueMap[doctorId] = { doctorName: queue.doctor.name, currentQueue: null, nextQueue: null };
+              }
+
+              // Set current queue if empty, otherwise set as next queue if queue number is higher
+              if (!doctorQueueMap[doctorId].currentQueue) {
+                doctorQueueMap[doctorId].currentQueue = queue.queueNumber;
+              } else if (!doctorQueueMap[doctorId].nextQueue && queue.queueNumber > doctorQueueMap[doctorId].currentQueue) {
+                doctorQueueMap[doctorId].nextQueue = queue.queueNumber;
+              }
+            }
+          });
+
+          // Convert map to an array for display
+          this.doctorQueues = Object.values(doctorQueueMap);
+
+          console.log('Filtered doctorQueues with next queue:', this.doctorQueues); // Log the filtered queues
         } else {
-          // Calculate wait time based on time difference with the next queue
-          const currentQueueTime = new Date(queueData[this.queueNumber - 1].queueTime).getTime();
-          const nextQueueTime = new Date(queueData[this.queueNumber].queueTime).getTime();
-          const timeDifferenceMinutes = Math.floor((nextQueueTime - currentQueueTime) / 60000);
-
-          // Convert to hours and minutes
-          const hours = Math.floor(timeDifferenceMinutes / 60);
-          const minutes = timeDifferenceMinutes % 60;
-          this.queueTime = `${hours} hours ${minutes} minutes`;
+          console.warn('No data available in the API response.');
         }
+      },
+      error: (err) => {
+        console.error('Error fetching data:', err); // Log error if API fails
       }
     });
   }
 
   goBack(): void {
-    // Logic for the back button
+    // Logic for the back button (if needed)
   }
 }
+

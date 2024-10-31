@@ -16,6 +16,7 @@
     font-weight: 800;
     font-size: 35px;
     margin-bottom: 50px;
+    text-align: center;
   }
 
   app-auth-image {
@@ -29,6 +30,10 @@
     justify-content: center; /* Center form horizontally */
     flex-direction: column; /* Stack elements vertically */
   }
+
+  form {
+    width: 80%;
+  }
   
   .form-group {
     display: flex;
@@ -40,7 +45,7 @@
   }
 
   .form-group input {
-    width: 600px;
+    width: 90%;
     height: 35px;
     border: 1px solid #ccc;
     border-radius: 5px;
