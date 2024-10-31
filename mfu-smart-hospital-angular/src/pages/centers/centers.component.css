@@ -10,6 +10,9 @@
 h2 {
     text-align: center;
     margin: 25px auto;
+    color: #880016;
+    font-size: 40px;
+    font-weight: bold;
 }
 
 .cards {
