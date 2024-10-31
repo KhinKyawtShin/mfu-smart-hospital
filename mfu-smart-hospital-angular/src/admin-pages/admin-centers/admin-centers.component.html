@@ -1,0 +1,20 @@
+<app-admin-header></app-admin-header>
+
+<div class="container">
+    <h2>Centers & Clinics</h2>
+
+    <div class="cards">
+        <app-card 
+            *ngFor="let center of centers"
+            [name]="center.name"
+            [imageUrl]="center.imageUrl"
+            [isSelected]="selectedCenter === center.name"
+            (click)="chooseCenter(center.name)">
+        </app-card>
+    </div>
+
+    <div class="row">
+        <button>Back</button>
+        <button>Next</button>
+    </div>
+</div>

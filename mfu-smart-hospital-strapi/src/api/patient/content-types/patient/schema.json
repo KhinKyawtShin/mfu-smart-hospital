@@ -4,7 +4,8 @@
   "info": {
     "singularName": "patient",
     "pluralName": "patients",
-    "displayName": "Patient"
+    "displayName": "Patient",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,12 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "password": {
+      "type": "password"
+    },
+    "email": {
+      "type": "email"
     }
   }
 }
