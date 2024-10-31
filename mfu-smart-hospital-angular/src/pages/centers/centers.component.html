@@ -4,7 +4,11 @@
     <h2>Centers & Clinics</h2>
 
     <div class="cards">
-
+        <app-card 
+            *ngFor="let center of centers"
+            [name]="center.name"
+            [imageUrl]="center.imageUrl">
+        </app-card>
     </div>
 
     <div class="row">
