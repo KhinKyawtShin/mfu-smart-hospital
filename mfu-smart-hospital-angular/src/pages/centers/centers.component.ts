@@ -22,4 +22,10 @@ export class CentersComponent {
     { name: 'Child', imageUrl: 'assets/child.png' },
     { name: 'Aesthetic', imageUrl: 'assets/aesthetic.png' },
   ];
+
+  selectedCenter: string | null = null;
+
+  chooseCenter(centerName: string) {
+    this.selectedCenter = centerName;
+  }
 }

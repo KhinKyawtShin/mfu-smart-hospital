@@ -7,7 +7,9 @@
         <app-card 
             *ngFor="let center of centers"
             [name]="center.name"
-            [imageUrl]="center.imageUrl">
+            [imageUrl]="center.imageUrl"
+            [isSelected]="selectedCenter === center.name"
+            (click)="chooseCenter(center.name)">
         </app-card>
     </div>
 

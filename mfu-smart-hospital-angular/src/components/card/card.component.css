@@ -12,6 +12,11 @@
     text-align: center;
   }
   
+  .card.selected {
+    border: 2px solid #b80016;
+    box-shadow: 0 4px 12px rgba(184, 0, 22, 0.5);
+  }
+
   .card img {
     width: 50%;
     height: auto;

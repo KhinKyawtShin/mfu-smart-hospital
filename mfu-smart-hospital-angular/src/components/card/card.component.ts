@@ -10,4 +10,5 @@ import { Component, Input } from '@angular/core';
 export class CardComponent {
   @Input() name: string = "";
   @Input() imageUrl: string = "";
+  @Input() isSelected: boolean = false;
 }
