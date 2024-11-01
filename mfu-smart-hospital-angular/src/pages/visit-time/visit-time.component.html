@@ -1,0 +1,20 @@
+<app-header></app-header>
+<div class="visit-time-container">
+  <h1>Choose your visit time</h1>
+
+  <!-- Google Calendar Embed -->
+  <div class="calendar-container">
+    <iframe src="https://calendar.google.com/calendar/embed?src=your-calendar-id&ctz=Asia/Bangkok" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  </div>
+
+  <!-- Time Slots -->
+  <div class="time-slots">
+    <div *ngFor="let time of availableTimes" class="time-slot" [ngClass]="{'booked': !isTimeAvailable(time)}">
+      <span>{{ time }}</span>
+      <button *ngIf="isTimeAvailable(time)" (click)="bookTime(time)">Book</button>
+    </div>
+  </div>
+
+  <button class="back-button" (click)="goBack()">Back</button>
+</div>
+<app-footer></app-footer>
