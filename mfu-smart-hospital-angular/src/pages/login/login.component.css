@@ -50,6 +50,11 @@
     border-radius: 5px;
     padding: 5px;
   }
+
+  .error-message {
+    text-align: center;
+    color: red;
+  }
   
   .link {
     display: flex;
