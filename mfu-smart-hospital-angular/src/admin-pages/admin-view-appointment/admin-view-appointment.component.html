@@ -24,12 +24,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let appointment of appointments">
-                <td>{{ appointment.id }}</td>
-                <td>{{ appointment.patientName }}</td>
-                <td>{{ appointment.time }}</td>
-                <td>{{ appointment.queueNumber }}</td>
-                <td>{{ appointment.status }}</td>
+            <tr *ngFor="let queue of appointments">
+                <td>{{ queue.id }}</td>
+                <td>{{ queue.patientName }}</td>
+                <td>{{ queue.queueTime | date:'shortTime' }}</td>
+                <td>{{ queue.queueNumber }}</td>
+                <td>{{ queue.status }}</td>
                 <td>
                     <button (click)="editAppointment()">Edit</button>
                 </td>
