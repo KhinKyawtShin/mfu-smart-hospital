@@ -11,7 +11,7 @@
             <h3>Reminder</h3>
           </div>
           <div class="col-12">
-            <p> You have an appointment with  On </p>
+            You have an appointment with Dr. {{ queue.doctor.name }} on {{ queue.queueTime | date: 'fullDate' }} at {{ queue.queueTime | date: 'shortTime' }}
           </div>
         </div>
       </div>
