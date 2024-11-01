@@ -54,6 +54,7 @@
   .error-message {
     text-align: center;
     color: red;
+    margin-bottom: 25px;
   }
   
   .link {
