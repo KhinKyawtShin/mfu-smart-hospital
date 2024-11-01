@@ -38,7 +38,7 @@ export class RegisterComponent {
       },
       error: (err) => {
         console.error('Registration failed:', err);
-        this.errorMessage = 'Registration failed. Please try again.';
+        this.errorMessage = 'It is already taken';
       }
     });
   }

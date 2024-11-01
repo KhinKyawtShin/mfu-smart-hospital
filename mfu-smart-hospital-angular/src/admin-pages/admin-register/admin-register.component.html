@@ -23,6 +23,9 @@
                 <input type="password" id="password" [(ngModel)]="password" name="password" required />
             </div>
     
+            <div *ngIf="errorMessage" class="error-message">*{{ errorMessage }}</div>
+            <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
             <div class="link">
                 <span>Already have an account?</span> 
                 <a href="/">Login↗</a>
