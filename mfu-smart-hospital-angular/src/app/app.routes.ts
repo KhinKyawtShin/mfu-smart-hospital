@@ -9,6 +9,7 @@ import { AdminViewAppointmentComponent } from '../admin-pages/admin-view-appoint
 import { AdminHeaderComponent } from '../admin-pages/admin-header/admin-header.component';
 import { AdminCentersComponent } from '../admin-pages/admin-centers/admin-centers.component';
 
+
 //import { HomeComponent } from '../pages/';
 //import { Service } from '../pages/';
 //import { PatientRecord } from '../pages/';
@@ -25,4 +26,4 @@ export const routes: Routes = [
     { path: 'patient-queue', component: PatientQueueComponent },
     { path: 'admin-view-appointment', component: AdminViewAppointmentComponent},
     { path: 'admin-header', component: AdminHeaderComponent},
-];
+]
