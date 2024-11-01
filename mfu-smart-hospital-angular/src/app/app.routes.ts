@@ -8,8 +8,7 @@ import { CentersComponent } from '../pages/centers/centers.component';
 import { AdminViewAppointmentComponent } from '../admin-pages/admin-view-appointment/admin-view-appointment.component';
 import { AdminHeaderComponent } from '../admin-pages/admin-header/admin-header.component';
 import { AdminCentersComponent } from '../admin-pages/admin-centers/admin-centers.component';
-
-
+import { VisitTimeComponent } from '../pages/visit-time/visit-time.component';
 import { HomePageComponent } from '../pages/home-page/home-page.component';
 //import { HomeComponent } from '../pages/';
 //import { Service } from '../pages/';
@@ -27,5 +26,7 @@ export const routes: Routes = [
     { path: 'patient-queue', component: PatientQueueComponent },
     { path: 'admin-view-appointment', component: AdminViewAppointmentComponent},
     { path: 'admin-header', component: AdminHeaderComponent},
+    { path: 'visit-time', component: VisitTimeComponent},
     { path: 'home-page', component: HomePageComponent}
 ];
+
