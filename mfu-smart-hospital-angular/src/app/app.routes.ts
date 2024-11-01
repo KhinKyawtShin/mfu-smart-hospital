@@ -15,7 +15,8 @@ import { AdminCentersComponent } from '../admin-pages/admin-centers/admin-center
 //import { History } from '../pages/';
 
 export const routes: Routes = [
-    { path: '', component: LoginComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent},
     { path: 'admin-login', component: AdminLoginComponent},
     { path: 'admin-register', component: AdminRegisterComponent},
