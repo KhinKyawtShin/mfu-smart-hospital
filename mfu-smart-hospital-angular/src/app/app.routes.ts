@@ -10,6 +10,7 @@ import { AdminHeaderComponent } from '../admin-pages/admin-header/admin-header.c
 import { AdminCentersComponent } from '../admin-pages/admin-centers/admin-centers.component';
 
 
+import { HomePageComponent } from '../pages/home-page/home-page.component';
 //import { HomeComponent } from '../pages/';
 //import { Service } from '../pages/';
 //import { PatientRecord } from '../pages/';
@@ -26,4 +27,5 @@ export const routes: Routes = [
     { path: 'patient-queue', component: PatientQueueComponent },
     { path: 'admin-view-appointment', component: AdminViewAppointmentComponent},
     { path: 'admin-header', component: AdminHeaderComponent},
-]
+    { path: 'home-page', component: HomePageComponent}
+];
