@@ -12,7 +12,7 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrls: ['./patient-queue.component.css']
 })
 export class PatientQueueComponent implements OnInit {
-  doctorQueues: any[] = []; // Array to store queue information for each doctor
+  userQueue: any | null = null;  // Store the queue information for the logged-in user
 
   constructor(private http: HttpClient) {}
 
@@ -20,39 +20,29 @@ export class PatientQueueComponent implements OnInit {
     this.fetchQueueData();
   }
 
+  // Placeholder to get the logged-in patient's ID
+  getLoggedInPatientId(): string {
+    // Replace with real logic (e.g., from auth service or local storage)
+    return 'logged-in-patient-id'; // Sample ID; replace with actual logged-in user ID
+  }
+
   fetchQueueData(): void {
-    this.http.get<any>('http://localhost:1337/api/queues?populate=doctor').subscribe({
+    const loggedInPatientId = this.getLoggedInPatientId(); // Get the logged-in patient ID
+
+    this.http.get<any>('http://localhost:1337/api/queues?populate[doctor]=*&populate[patient]=*').subscribe({
       next: (response) => {
         console.log('API Response:', response); // Log the API response
 
         if (response && response.data && response.data.length > 0) {
           const queueData = response.data;
 
-          // Group patients by doctor and sort by queue number for each doctor
-          const doctorQueueMap: { [doctorId: string]: any } = {};
+          // Filter the queue data for the logged-in patient
+          this.userQueue = queueData.find((queue: any) => queue.patient?.id === loggedInPatientId) || null;
 
-          queueData.forEach((queue: any) => {
-            const doctorId = queue.doctor?.id;
-            if (doctorId) {
-              if (!doctorQueueMap[doctorId]) {
-                doctorQueueMap[doctorId] = { doctorName: queue.doctor.name, currentQueue: null, nextQueue: null };
-              }
-
-              // Set current queue if empty, otherwise set as next queue if queue number is higher
-              if (!doctorQueueMap[doctorId].currentQueue) {
-                doctorQueueMap[doctorId].currentQueue = queue.queueNumber;
-              } else if (!doctorQueueMap[doctorId].nextQueue && queue.queueNumber > doctorQueueMap[doctorId].currentQueue) {
-                doctorQueueMap[doctorId].nextQueue = queue.queueNumber;
-              }
-            }
-          });
-
-          // Convert map to an array for display
-          this.doctorQueues = Object.values(doctorQueueMap);
-
-          console.log('Filtered doctorQueues with next queue:', this.doctorQueues); // Log the filtered queues
+          console.log('Filtered queue for logged-in user:', this.userQueue); // Log the filtered queue
         } else {
           console.warn('No data available in the API response.');
+          this.userQueue = null;  // Clear if no data
         }
       },
       error: (err) => {
@@ -65,4 +55,6 @@ export class PatientQueueComponent implements OnInit {
     // Logic for the back button (if needed)
   }
 }
+
+
 

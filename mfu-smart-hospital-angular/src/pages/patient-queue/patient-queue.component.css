@@ -6,53 +6,20 @@
   margin-top: 50px;
 }
 
-.queue-table {
-  width: 100%;
-  max-width: 1000px;
-  margin: 50px auto;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.queue-table thead {
-  background-color: #B8001F;
-  color: white;
-}
-
-.queue-table th, .queue-table td {
-  padding: 16px;
-  font-size: 1em;
-  text-align: center;
-}
-
-.queue-table th {
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.queue-table tbody tr {
-  background-color: #ffffff;
-  transition: background-color 0.3s;
-}
-
-.queue-table tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
-}
-
-.queue-table tbody tr:hover {
-  background-color: #fff3f5;
-}
-
-.queue-table td {
-  color: #555;
+.no-queue-box, .queue-display-box {
+  border: 2px solid #F9f9f9;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 40px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .back-button {
-  margin-top: 20px;
-  margin-bottom: 200px;
+  margin-top: 30px;
+  margin-bottom: 100px;
   padding: 10px 20px;
   background-color: #B8001F;
   color: #fff;
@@ -66,4 +33,5 @@
 .back-button:hover {
   background-color: #880016;
 }
+
 
