@@ -1,0 +1,23 @@
+.square {
+  background-color: blue;  /* Background color */
+  height: 100px;           /* Fixed height for squares */
+  /* The width will be controlled by the Bootstrap grid */
+}
+.doctor-image{
+  height:150px;
+  width:150px;
+  object-fit: cover;
+}
+
+.border-black{
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.whole content{
+  max-width: 1000px;
+}
+.appointment-info{
+ 
+}
