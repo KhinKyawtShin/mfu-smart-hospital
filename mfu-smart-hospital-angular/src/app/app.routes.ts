@@ -27,6 +27,5 @@ export const routes: Routes = [
     { path: 'patient-queue', component: PatientQueueComponent },
     { path: 'admin-view-appointment', component: AdminViewAppointmentComponent},
     { path: 'admin-header', component: AdminHeaderComponent},
-]
     { path: 'home-page', component: HomePageComponent}
 ];
