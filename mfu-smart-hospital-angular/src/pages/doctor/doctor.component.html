@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+
+<div class="doctors-container">
+   <h2>Child Specialist Doctors</h2>
+   <div class="doctor-cards">
+     <div class="doctor-card" *ngFor="let doctor of doctors">
+       <img [src]="doctor.picture.url" alt="{{ doctor.name }}" class="doctor-pic" />
+       <h3>{{ doctor.name }}</h3>
+       <p>{{ doctor.departmentName }}</p>
+     </div>
+   </div>
+
+
+   <div class="button-container">
+       <button (click)="goBack()">Back</button>
+       <button (click)="goNext()">Next</button>
+   </div>
+</div>
+
+
+<app-footer></app-footer>

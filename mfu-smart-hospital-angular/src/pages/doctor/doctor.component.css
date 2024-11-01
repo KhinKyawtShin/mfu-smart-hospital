@@ -1,0 +1,59 @@
+.doctors-container {
+    padding: 20px;
+  }
+ 
+ 
+  .doctors-container h2 {
+    text-align: center; /* Center the heading text */
+    margin-bottom: 20px; /* Optional: add some space below the heading */
+    color: #880016;
+  }
+  
+  .doctor-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;/* Center cards horizontally */
+    max-width: 800px; /* Set a max width for the cards container */
+    width: 100%;
+    margin: auto;
+  }
+   .doctor-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    width: 200px; /* Set a fixed width for the cards */
+  }
+   .doctor-pic {
+    border-radius: 50%;
+    width: 100px; /* Adjust the size of the pictures */
+    height: 100px; /* Ensure the pictures are square */
+  }
+   .button-container {
+    display: flex;
+    justify-content: space-between; /* Center the buttons */
+    margin-top: 20px; /* Space above the buttons */
+    width: 100%; /* Full width for the button container */
+    max-width: 800px;  /* Space between buttons */
+    margin: auto;
+  }
+   button {
+    margin-top: 20px;
+    margin-bottom: 200px;
+    padding: 10px 20px; /* Add some padding for better appearance */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #F2F2F2; /* Bootstrap primary color */
+    color: #000000; /* Button text color */
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+ 
+ 
+  button:hover {
+    background-color: #880016;
+  }
+ 
+ 
