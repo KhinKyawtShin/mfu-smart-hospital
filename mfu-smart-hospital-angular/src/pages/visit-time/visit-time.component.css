@@ -1,25 +1,107 @@
-.booking-container {
-  text-align: center;
-}
-
-.calendar {
-  margin: 20px;
-}
-
-.slots {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
 }
 
-.slots div {
+h2 {
+  color: #8B0000;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.two-column {
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  gap: 30px;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 20px;
 }
 
-button {
-  margin-left: 10px;
-  padding: 5px 10px;
+mat-calendar {
+  width: 320px;
+  --mat-calendar-selected: #4CAF50; /* Color for selected dates */
+  --mat-calendar-today: #ffe6e6; /* Pale red background for today's date */
 }
+
+/* Adding a red border around the selected date */
+::ng-deep .mat-calendar-body-selected {
+  border: 2px solid red;
+  border-radius: 50%;
+}
+
+/* Styling today's date with a pale red background */
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  background-color: #ffe6e6; /* Pale red color for today's date */
+  color: #d32f2f; /* Red text color */
+  font-weight: bold;
+}
+
+.calendar-box {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  transition: box-shadow 0.3s ease;
+}
+
+.calendar-box:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.time-slots {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.time-slot {
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+  padding: 12px;
+  margin: 6px 0;
+  border-radius: 8px;
+  background-color: #e7e7e7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.time-slot:hover {
+  background-color: #d4f1f4; /* Light blue on hover */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.time-slot.booked {
+  background-color: #f8d7da;
+  color: #721c24;
+  opacity: 0.6;
+}
+
+.time-slot.selected {
+  border: 2px solid #4CAF50; /* Green border for selected */
+  font-weight: bold;
+}
+
+.back-button {
+  margin-top: 30px;
+  margin-bottom: 100px;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
 
