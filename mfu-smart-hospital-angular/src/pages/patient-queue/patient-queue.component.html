@@ -1,24 +1,31 @@
+<!-- Bootstrap CSS (make sure to include Bootstrap in your project) -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <app-header></app-header>
-<div class="queue-container">
-  <h2>Patient Queue</h2>
+
+<div class="container queue-container mt-5">
+  <h2 class="text-center">Patient Queue</h2>
 
   <!-- Display message if no queue is available for the logged-in user -->
-  <div *ngIf="!userQueue" class="no-queue-box">
-    <h1>0</h1>
-    <p>Doctor: N/A</p>
+  <div *ngIf="!userQueue" class="no-queue-box text-center py-4 border rounded bg-light">
+    <h1 class="display-4">0</h1>
+    <p class="mb-1">Doctor: N/A</p>
     <p>Appointment Time: N/A</p>
   </div>
 
   <!-- Display queue details if userQueue is populated -->
-  <div *ngIf="userQueue" class="queue-display-box">
-    <h2>{{ userQueue.queueNumber }}</h2>
-    <p>Doctor: {{ userQueue.doctor?.name || 'N/A' }}</p>
-    <p>Appointment Time: {{ userQueue.appointmentTime || 'N/A' }}</p>
+  <div *ngIf="userQueue" class="queue-display-box text-center py-4 border rounded bg-light">
+    <h2 class="display-4">{{ userQueue.queueNumber }}</h2>
+    <p class="mb-1">Doctor: {{ userQueue.doctor?.name}}</p>
+    <p>Appointment Time: {{ userQueue.queueTime | date: 'dd/MM/yyyy, hh:mm a'}}</p>
   </div>
 
-  <button class="back-button" (click)="goBack()">Back</button>
+  <div class="text-center mt-3">
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+  </div>
 </div>
+
 <app-footer></app-footer>
+
 
 
 
