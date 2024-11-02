@@ -23,7 +23,7 @@ export class HomePageComponent implements OnInit {
 
   fetchQueueByPatientName(): void {
     const apiUrl = `http://localhost:1337/api/queues?populate[patient]=*&populate[doctor]=*&filters[patient][name][$eq]=${this.patientName}`;
-  
+
     this.http.get<any>(apiUrl).subscribe({
       next: (data) => {
         console.log(data);
@@ -38,6 +38,6 @@ export class HomePageComponent implements OnInit {
         this.queue = null;
       }
     });
-  }  
+  }
 }
 
