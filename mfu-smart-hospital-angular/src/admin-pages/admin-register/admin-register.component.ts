@@ -19,8 +19,9 @@ export class AdminRegisterComponent {
   errorMessage: string = '';
   successMessage: string = '';
 
+  // API URLs
   private apiUrl = 'http://localhost:1337/api/auth/local/register';
-  private roleUrl = 'http://localhost:1337/users-permissions/roles'; // Endpoint for fetching roles
+  private assignRoleUrl = 'http://localhost:1337/api/users'; // This is for assigning the role
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -29,20 +30,36 @@ export class AdminRegisterComponent {
       username: this.username,
       email: this.email,
       password: this.password,
-      role_id: '3', // You can assign the role directly if your custom register method allows it
+      // Remove the role assignment here
     };
 
     this.http.post<{ user: any }>(this.apiUrl, registerData).subscribe({
       next: (response) => {
         console.log('Registration successful:', response.user);
-        this.successMessage = 'Admin registration successful!';
+        this.successMessage = 'Admin registration successful! Assigning Admin role...';
 
-        // Optional: you can fetch roles after registration if needed
-        this.router.navigate(['/admin-login']); // Redirect to the login page
+        const userId = response.user.id;
+        this.assignRole(userId);
       },
       error: (err) => {
         console.error('Admin registration failed:', err);
         this.errorMessage = err.error.message || 'Registration failed. Please try again.';
+      }
+    });
+  }
+
+  private assignRole(userId: number): void {
+    const roleData = { role: 3 }; // Role ID for Admin
+
+    this.http.put(`${this.assignRoleUrl}/${userId}`, roleData).subscribe({
+      next: () => {
+        this.successMessage = 'Admin role assigned successfully!';
+        alert(this.successMessage);
+        this.router.navigate(['/admin-login']);
+      },
+      error: (err) => {
+        console.error('Role assignment failed:', err);
+        this.errorMessage = 'Failed to assign role. Please try again.';
       }
     });
   }
