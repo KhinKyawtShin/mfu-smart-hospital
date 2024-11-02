@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthImageComponent } from '../../components/auth-image/auth-image.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './admin-register.component.html',
   styleUrls: ['./admin-register.component.css']
 })
-export class AdminRegisterComponent implements OnInit {
+export class AdminRegisterComponent {
   username: string = '';
   email: string = '';
   password: string = '';
@@ -24,16 +24,12 @@ export class AdminRegisterComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit() {
-    // Optionally, you can fetch the Admin role ID here if needed
-    // but since we're directly assigning roles, we can remove this if it's not necessary
-  }
-
   onSubmit(): void {
     const registerData = {
       username: this.username,
       email: this.email,
       password: this.password,
+      role_id: '3', // You can assign the role directly if your custom register method allows it
     };
 
     this.http.post<{ user: any }>(this.apiUrl, registerData).subscribe({
