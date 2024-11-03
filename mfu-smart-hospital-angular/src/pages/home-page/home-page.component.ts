@@ -14,7 +14,7 @@ import { FooterComponent } from "../footer/footer.component";
 export class HomePageComponent implements OnInit {
   queue: any;
   patientName: string = 'Alex';
-
+  
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
