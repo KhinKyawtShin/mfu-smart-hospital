@@ -1,22 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QueueService {
-  private apiUrl = 'http://localhost:1337/api/queues';
+  private localStorageKey = 'patientData';
 
-  constructor(private http: HttpClient) {}
-
-  getQueues(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  // Set patient data and store it in localStorage
+  setPatientData(data: any) {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(data));
   }
 
-  addQueue(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+  // Get patient data from localStorage
+  getPatientData() {
+    const storedData = localStorage.getItem(this.localStorageKey);
+    if (storedData) {
+      return JSON.parse(storedData);
+    }
+    return null;
+  }
+
+  // Clear patient data from localStorage
+  clearPatientData() {
+    localStorage.removeItem(this.localStorageKey);
   }
 }
+
+
 
 

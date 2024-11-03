@@ -1,20 +1,29 @@
-<div class="booking-container">
-  <h2>Choose your visit time</h2>
+<app-header></app-header>
+<div class="container">
+  <h2>Choose Your Visit Time</h2>
 
-  <div class="calendar">
-    <label for="date">Pick a date:</label>
-    <input type="date" id="date" (change)="onDateChange($event)" />
-  </div>
+  <!-- Two-column layout -->
+  <div class="two-column">
+    <!-- Calendar Box with Enhanced Background and Shadow -->
+    <div class="calendar-box">
+      <mat-calendar [(selected)]="selectedDate" (selectedChange)="onDateChange($event)"></mat-calendar>
+    </div>
 
-  <div class="slots">
-    <div *ngFor="let queue of queues">
-      <span>{{ queue.attributes.time }}</span>
-      <button (click)="bookSlot(queue.id)" [disabled]="!queue.attributes.available">
-        Book
-      </button>
+    <!-- Time Slots with Updated Styles -->
+    <div class="time-slots">
+      <div *ngFor="let slot of timeSlots" class="time-slot" [ngClass]="{'booked': slot.booked, 'selected': slot === selectedSlot}">
+        <span>{{ slot.time }}</span>
+        <button mat-raised-button color="primary" *ngIf="!slot.booked" (click)="bookSlot(slot)">Book</button>
+      </div>
     </div>
   </div>
 
-  <p *ngIf="bookingResponse">{{ bookingResponse }}</p>
+  <button mat-raised-button color="warn" class="back-button" (click)="goBack()">Back</button>
 </div>
+<app-footer></app-footer>
+
+
+
+
+
 
