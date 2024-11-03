@@ -11,6 +11,7 @@ import { AdminCentersComponent } from '../admin-pages/admin-centers/admin-center
 import { VisitTimeComponent } from '../pages/visit-time/visit-time.component';
 import { HomePageComponent } from '../pages/home-page/home-page.component';
 import { DoctorComponent } from '../pages/doctor/doctor.component';
+import { ConfirmAppointmentComponent } from '../pages/confirm-appointment/confirm-appointment.component';
 //import { HomeComponent } from '../pages/';
 //import { Service } from '../pages/';
 //import { PatientRecord } from '../pages/';
@@ -29,6 +30,7 @@ export const routes: Routes = [
     { path: 'admin-header', component: AdminHeaderComponent},
     { path: 'visit-time', component: VisitTimeComponent},
     { path: 'home-page', component: HomePageComponent},
-    { path: 'doctor', component: DoctorComponent}
+    { path: 'doctor', component: DoctorComponent},
+    { path: 'confirm-appointment', component: ConfirmAppointmentComponent}
 ];
 

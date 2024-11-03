@@ -17,9 +17,11 @@ import { DatePipe } from '@angular/common';
 })
 export class HomePageComponent implements OnInit {
   queue: any;
-  patientName: string = 'Carol';
+
 
   constructor(private http: HttpClient, private router: Router, private queueService: QueueService) {}
+  patientName: string = 'Alex';
+  
 
   ngOnInit(): void {
     this.fetchQueueByPatientName();
