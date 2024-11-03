@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { Router } from '@angular/router';
-import { QueueService } from '../services/queue.service';
+import { QueueService } from '../../services/queue.service';
 import { DatePipe } from '@angular/common';
 
 @Component({
