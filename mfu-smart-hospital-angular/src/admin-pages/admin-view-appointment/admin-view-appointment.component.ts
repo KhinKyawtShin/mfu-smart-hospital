@@ -61,8 +61,6 @@ search(): void {
   }
 }
 
-
-
 editAppointment(): void{
 //write later
 }
@@ -80,25 +78,4 @@ deleteAppointment(documentId: string): void {
     }
   });
 }
-
-/*deleteAppointment(documentId: number): void {
-  const url = `http://localhost:1337/api/queues/${documentId}`; // Make sure this is the correct endpoint
-  console.log('Attempting to delete appointment with Document ID:', documentId); // Debug log
-  console.log('Delete URL:', url); // Log constructed URL
-  
-  this.http.delete(url).subscribe({
-    next: () => {
-      console.log('Delete response:'); // Log response
-      // Optionally, remove the deleted appointment from the UI if needed
-      this.appointments = this.appointments.filter(queue => queue.documentId !== documentId);
-      this.filteredAppointments = this.filteredAppointments.filter(queue => queue.documentId !== documentId);
-      console.log('Appointment deleted successfully');
-    },
-    error: (err) => {
-      console.error('Error deleting appointment:', err);
-    }
-  });
-}*/
-
-
 }
