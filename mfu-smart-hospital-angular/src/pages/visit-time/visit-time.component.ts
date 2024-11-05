@@ -32,6 +32,16 @@ interface TimeSlot {
   styleUrls: ['./visit-time.component.css'],
 })
 export class VisitTimeComponent {
+  bookedTimes: Set<string> = new Set(); // Assuming bookedTimes holds strings of booked time slots
+
+  bookTime(time: TimeSlot): void {
+    if (!time.booked) {
+        time.booked = true; // Mark the slot as booked
+        this.bookedTimes.add(time.time); // Assuming bookedTimes is a Set of strings
+        console.log(`Booked time: ${time.time}`);
+    }
+}
+
   selectedDate: Date | null = null;
   selectedSlot: TimeSlot | null = null;
   timeSlots: TimeSlot[] = [
@@ -57,6 +67,10 @@ export class VisitTimeComponent {
     { time: '15:20 - 15:40', booked: false },
     { time: '15:40 - 16:00', booked: false },
   ];
+
+  get availableTimes(): TimeSlot[] {
+    return this.timeSlots.filter(slot => !slot.booked); // Dynamically get available slots
+  }
 
   onDateChange(event: any): void {
     this.selectedDate = event.value;
