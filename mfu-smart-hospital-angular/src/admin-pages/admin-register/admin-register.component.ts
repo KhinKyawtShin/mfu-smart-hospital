@@ -19,8 +19,9 @@ export class AdminRegisterComponent {
   errorMessage: string = '';
   successMessage: string = '';
 
-  private apiUrl = 'http://localhost:1337/api/auth/local/register'; // Admin registration endpoint
-  private assignRoleUrl = 'http://localhost:1337/api/users'; // Adjust this based on your API to assign roles
+  // API URLs
+  private apiUrl = 'http://localhost:1337/api/auth/local/register';
+  private assignRoleUrl = 'http://localhost:1337/api/users'; // This is for assigning the role
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -29,36 +30,32 @@ export class AdminRegisterComponent {
       username: this.username,
       email: this.email,
       password: this.password,
-      // Do not include role here if Strapi does not accept it
+      // Remove the role assignment here
     };
 
     this.http.post<{ user: any }>(this.apiUrl, registerData).subscribe({
       next: (response) => {
         console.log('Registration successful:', response.user);
-        this.successMessage = 'Admin registration successful! You can now log in.';
+        this.successMessage = 'Admin registration successful! Assigning Admin role...';
 
-        // Now assign the Admin role
-        const userId = response.user.id; // Get the user ID from the response
-        this.assignRole(userId, 'Admin'); // Call the method to assign the Admin role
+        const userId = response.user.id;
+        this.assignRole(userId);
       },
       error: (err) => {
         console.error('Admin registration failed:', err);
-        if (err.error.message) {
-          this.errorMessage = err.error.message;
-        } else {
-          this.errorMessage = 'Registration failed. Please try again.';
-        }
+        this.errorMessage = err.error.message || 'Registration failed. Please try again.';
       }
     });
   }
 
-  private assignRole(userId: number, roleName: string): void {
-    const roleData = { role: roleName }; // Adjust the payload based on your Strapi setup
+  private assignRole(userId: number): void {
+    const roleData = { role: 3 }; // Role ID for Admin
 
     this.http.put(`${this.assignRoleUrl}/${userId}`, roleData).subscribe({
       next: () => {
-        alert(this.successMessage); // Notify the user of successful registration
-        this.router.navigate(['/admin-login']); // Redirect to login page on success
+        this.successMessage = 'Admin role assigned successfully!';
+        alert(this.successMessage);
+        this.router.navigate(['/admin-login']);
       },
       error: (err) => {
         console.error('Role assignment failed:', err);

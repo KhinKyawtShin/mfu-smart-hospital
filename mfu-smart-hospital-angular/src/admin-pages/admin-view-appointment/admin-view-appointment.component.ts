@@ -16,12 +16,14 @@ export class AdminViewAppointmentComponent implements OnInit{
   appointments: any[] = [];
   filteredAppointments: any[] = []; 
   searchTerm: string = '';
+  url = `http://localhost:1337/api/queues`;
+
 
   constructor(private http: HttpClient) {}
 
-ngOnInit(): void {
-  console.log('Initializing AdminViewAppointmentComponent');
-  this.fetchAppointmentData();
+  ngOnInit(): void {
+    console.log('Initializing AdminViewAppointmentComponent');
+    this.fetchAppointmentData();
 }
 
 fetchAppointmentData(): void {
@@ -31,6 +33,7 @@ fetchAppointmentData(): void {
         const queueData = response.data;
         this.appointments = queueData.map((queue: any) => ({
           id: queue.id,
+          documentId: queue.documentId,
           patientName: queue.patient?.name || 'Unknown',
           queueTime: queue.queueTime,
           queueNumber: queue.queueNumber,
@@ -58,13 +61,21 @@ search(): void {
   }
 }
 
-
-
 editAppointment(): void{
 //write later
 }
 
-deleteAppointment(): void{
-//write later
+deleteAppointment(documentId: string): void {
+  console.log({documentId});
+  this.http.delete(`${this.url}/${documentId}`).subscribe({
+    next: () => {
+      this.appointments = this.appointments.filter(queue => queue.documentId !== documentId);
+      this.filteredAppointments = this.filteredAppointments.filter(queue => queue.documentId !== documentId);
+      console.log('Appointment deleted successfully');
+    },
+    error: (err) => {
+      console.error('Error deleting appointment:', err);
+    }
+  });
 }
 }

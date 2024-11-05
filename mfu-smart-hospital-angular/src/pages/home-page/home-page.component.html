@@ -11,7 +11,7 @@
             <h3>Reminder</h3>
           </div>
           <div class="col-12">
-            You have an appointment with Dr. {{ queue.doctor.name }} on {{ queue.queueTime | date: 'fullDate' }} at {{ queue.queueTime | date: 'shortTime' }}
+            You have an appointment with {{ queue?.doctor?.name }} on {{ queue?.queueTime | date: 'fullDate' }} at {{ queue?.queueTime | date: 'shortTime' }}
           </div>
         </div>
       </div>
@@ -27,6 +27,12 @@
         <h3 style="margin:0px">Medical Checkup</h3>
       </div>
     </div>
+    <!-- Noelle added this one XD -->
+    <!--//////////////////////////-->
+    <div class="text-center mt-4">
+      <button class="btn btn-primary" (click)="goToQueuePage()">View Patient Queue</button>
+    </div>
+    <!--//////////////////////////-->
   </div>
 </div>
 <div style="height: 60px;"></div>
