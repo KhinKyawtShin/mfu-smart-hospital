@@ -20,10 +20,9 @@ export class ConfirmAppointmentComponent implements OnInit {
   dateTime: Date = new Date();
   doctorId: string = "u9sbsuuiwl3wn7qbvn86tm82";
   info: any;
-  router: any;
    // Replace with your Strapi base URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchDoctorDepartment();
@@ -67,6 +66,7 @@ export class ConfirmAppointmentComponent implements OnInit {
     this.http.post(baseUrl, { data: appointmentData }).subscribe({
       next: (response) => {
         console.log('Appointment submitted successfully:', response);
+        this.router.navigate(['/home-page']);
         // You might want to show a success message or navigate to another page here
       },
       error: (error) => {
