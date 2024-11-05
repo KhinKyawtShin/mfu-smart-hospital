@@ -1,20 +1,40 @@
 <app-header></app-header>
-<div class="visit-time-container">
-  <h1>Choose your visit time</h1>
+<div class="container">
+  <div class="card">
+    <h2>Choose Your Visit Time</h2>
 
-  <!-- Google Calendar Embed -->
-  <div class="calendar-container">
-    <iframe src="https://calendar.google.com/calendar/embed?src=your-calendar-id&ctz=Asia/Bangkok" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-  </div>
+    <!-- Calendar Dropdown with Enhanced Background and Shadow -->
+    <div class="calendar-picker">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Select Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="onDateChange($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
 
-  <!-- Time Slots -->
-  <div class="time-slots">
-    <div *ngFor="let time of availableTimes" class="time-slot" [ngClass]="{'booked': !isTimeAvailable(time)}">
-      <span>{{ time }}</span>
-      <button *ngIf="isTimeAvailable(time)" (click)="bookTime(time)">Book</button>
+    <!-- Time Slots displayed in a Grid -->
+    <div class="time-slots-grid">
+      <div *ngFor="let slot of timeSlots" class="time-slot" [ngClass]="{'booked': slot.booked, 'selected': slot === selectedSlot}">
+        <span>{{ slot.time }}</span>
+        <button mat-raised-button color="primary" *ngIf="!slot.booked" (click)="bookSlot(slot)">Book</button>
+      </div>
     </div>
   </div>
 
-  <button class="back-button" (click)="goBack()">Back</button>
+  <!-- Navigation Buttons Outside Card -->
+  <div class="row">
+    <button class="back-button" (click)="goBack()">Back</button>
+    <button class="next-button" (click)="goNext()">Next</button>
+  </div>
 </div>
 <app-footer></app-footer>
+
+
+
+
+
+
+
+
+

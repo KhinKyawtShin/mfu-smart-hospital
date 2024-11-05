@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="container">
-    <h2>Centers & Clinics</h2>
+  <h2>Centers & Clinics</h2>
 
     <div class="cards">
         <app-card 
@@ -13,9 +13,10 @@
         </app-card>
     </div>
 
-    <div class="row">
-        <button>Back</button>
-        <button>Next</button>
-    </div>
+  <div class="row">
+    <button class="back-button" (click)="goBack()">Back</button>
+    <button class="next-button" (click)="goNext()">Next</button>
+  </div>
 </div>
+
 <app-footer></app-footer>

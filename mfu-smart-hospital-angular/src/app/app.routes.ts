@@ -8,15 +8,18 @@ import { CentersComponent } from '../pages/centers/centers.component';
 import { AdminViewAppointmentComponent } from '../admin-pages/admin-view-appointment/admin-view-appointment.component';
 import { AdminHeaderComponent } from '../admin-pages/admin-header/admin-header.component';
 import { AdminCentersComponent } from '../admin-pages/admin-centers/admin-centers.component';
-
-
+import { VisitTimeComponent } from '../pages/visit-time/visit-time.component';
+import { HomePageComponent } from '../pages/home-page/home-page.component';
+import { DoctorComponent } from '../pages/doctor/doctor.component';
+import { ConfirmAppointmentComponent } from '../pages/confirm-appointment/confirm-appointment.component';
 //import { HomeComponent } from '../pages/';
 //import { Service } from '../pages/';
 //import { PatientRecord } from '../pages/';
 //import { History } from '../pages/';
 
 export const routes: Routes = [
-    { path: '', component: LoginComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent},
     { path: 'admin-login', component: AdminLoginComponent},
     { path: 'admin-register', component: AdminRegisterComponent},
@@ -25,4 +28,9 @@ export const routes: Routes = [
     { path: 'patient-queue', component: PatientQueueComponent },
     { path: 'admin-view-appointment', component: AdminViewAppointmentComponent},
     { path: 'admin-header', component: AdminHeaderComponent},
-]
+    { path: 'visit-time', component: VisitTimeComponent},
+    { path: 'home-page', component: HomePageComponent},
+    { path: 'doctor', component: DoctorComponent},
+    { path: 'confirm-appointment', component: ConfirmAppointmentComponent}
+];
+

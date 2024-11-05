@@ -1,10 +1,12 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=edit" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete" rel="stylesheet">
 
 <app-admin-header></app-admin-header>
 <br>
 <div class="search-box">
     <div class="col-auto">
-        <input type="search" class="form-control" id="searchAppointment">
+        <input type="search" class="form-control" id="searchAppointment" [(ngModel)]="searchTerm" placeholder="Search by Patient Name">
     </div>
     <button class="search-button" (click)="search()">
         <span class="material-icons">search</span> Search
@@ -24,14 +26,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let appointment of appointments">
-                <td>{{ appointment.id }}</td>
-                <td>{{ appointment.patientName }}</td>
-                <td>{{ appointment.time }}</td>
-                <td>{{ appointment.queueNumber }}</td>
-                <td>{{ appointment.status }}</td>
-                <td>
-                    <button (click)="editAppointment()">Edit</button>
+            <tr *ngFor="let queue of filteredAppointments">
+                <td>{{ queue.id }}</td>
+                <td>{{ queue.patientName }}</td>
+                <td>{{ queue.queueTime | date:'shortTime' }}</td>
+                <td>{{ queue.queueNumber }}</td>
+                <td>{{ queue.status }}</td>
+                <td class="two-icons">
+                    <div class="edit-button">
+                        <span (click)="editAppointment()" class="material-icons">edit</span>
+                    </div>
+                    <div class="delete-button">
+                        <span (click)="deleteAppointment(queue.documentId)" class="material-symbols-outlined">delete</span>
+                    </div>
                 </td>
             </tr>
         </tbody>

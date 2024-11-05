@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<app-header></app-header>
+
+    <h3 style=" color: #b8001f;" class="text-center mt-4 mb-4">Appointment Information</h3>
+
+    <div class="row justify-content-center">
+        <div class="col-9 d-flex justify-content-center">
+            <div class="col-9 form-group d-flex flex-column flex-md-row align-items-center">
+                <label class="col-auto mb-2 mb-md-0" for="doctor">Doctor :</label>
+                <input type="text" class="form-control text-center" id="doctor" value="{{info?.name}}" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-9 d-flex justify-content-center">
+            <div class="col-9 form-group d-flex flex-column flex-md-row align-items-center">
+                <label class="col-auto mb-2 mb-md-0" for="department">Center and Clinic :</label>
+                <input type="text" class="form-control text-center" id="department" value="{{info?.department?.name}}" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-9 d-flex justify-content-center">
+            <div class="col-9 form-group d-flex flex-column flex-md-row align-items-center">
+                <label class="col-auto mb-2 mb-md-0" for="dateTime">Appointment Time :</label>
+                <input type="text" class="form-control text-center" id="dateTime" value="{{ dateTime | date: 'medium' }}" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-9 d-flex justify-content-center">
+            <button style="background-color: #b8001f; color: white;" class="btn btn-primary mt-3" (click)="submitAppointment()">Confirm</button>
+        </div>
+    </div>
+    <div style="height: 40px"></div>
+    
+
+    
+<app-footer></app-footer>
