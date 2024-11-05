@@ -25,11 +25,12 @@
     text-align: center;
     width: 200px; /* Set a fixed width for the cards */
   }
-   .doctor-pic {
-    border-radius: 50%;
-    width: 100px; /* Adjust the size of the pictures */
-    height: 100px; /* Ensure the pictures are square */
-  }
+  .doctor-image {
+    width: 100px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Make it circular */
+    margin-bottom: 10px; /* Space between image and text */
+}
    .button-container {
     display: flex;
     justify-content: space-between; /* Center the buttons */
