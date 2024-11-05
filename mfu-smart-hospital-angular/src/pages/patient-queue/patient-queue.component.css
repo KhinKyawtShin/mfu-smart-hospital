@@ -17,7 +17,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.back-button {
+.btn-primary {
   margin-top: 30px;
   margin-bottom: 100px;
   padding: 10px 20px;
@@ -30,7 +30,7 @@
   transition: background-color 0.3s;
 }
 
-.back-button:hover {
+.btn-primary:hover {
   background-color: #880016;
 }
 

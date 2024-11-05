@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { QueueService } from './booking.service';
+import { QueueService } from './queue.service';
 
 describe('QueueService', () => {
   let service: QueueService;

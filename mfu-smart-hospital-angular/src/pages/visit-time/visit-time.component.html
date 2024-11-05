@@ -1,16 +1,20 @@
 <app-header></app-header>
 <div class="container">
-  <h2>Choose Your Visit Time</h2>
+  <div class="card">
+    <h2>Choose Your Visit Time</h2>
 
-  <!-- Two-column layout -->
-  <div class="two-column">
-    <!-- Calendar Box with Enhanced Background and Shadow -->
-    <div class="calendar-box">
-      <mat-calendar [(selected)]="selectedDate" (selectedChange)="onDateChange($event)"></mat-calendar>
+    <!-- Calendar Dropdown with Enhanced Background and Shadow -->
+    <div class="calendar-picker">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Select Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="onDateChange($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
 
-    <!-- Time Slots with Updated Styles -->
-    <div class="time-slots">
+    <!-- Time Slots displayed in a Grid -->
+    <div class="time-slots-grid">
       <div *ngFor="let slot of timeSlots" class="time-slot" [ngClass]="{'booked': slot.booked, 'selected': slot === selectedSlot}">
         <span>{{ slot.time }}</span>
         <button mat-raised-button color="primary" *ngIf="!slot.booked" (click)="bookSlot(slot)">Book</button>
@@ -18,9 +22,16 @@
     </div>
   </div>
 
-  <button mat-raised-button color="warn" class="back-button" (click)="goBack()">Back</button>
+  <!-- Navigation Buttons Outside Card -->
+  <div class="row">
+    <button class="back-button" (click)="goBack()">Back</button>
+    <button class="next-button" (click)="goNext()">Next</button>
+  </div>
 </div>
 <app-footer></app-footer>
+
+
+
 
 
 
