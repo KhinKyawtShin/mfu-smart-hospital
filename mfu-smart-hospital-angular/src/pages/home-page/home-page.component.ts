@@ -20,7 +20,7 @@ export class HomePageComponent implements OnInit {
 
 
   constructor(private http: HttpClient, private router: Router, private queueService: QueueService) {}
-  patientName: string = 'Alex';
+  patientName: string = 'lynn';
   
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class HomePageComponent implements OnInit {
   }
 
   fetchQueueByPatientName(): void {
-    const apiUrl = `http://localhost:1337/api/queues?populate[patient]=*&populate[doctor]=*&filters[patient][name][$eq]=${this.patientName}`;
+    const apiUrl = `http://localhost:1337/api/queues?populate[users_permissions_user]=*&populate[doctor]=*&filters[users_permissions_user][username][$eq]=${this.patientName}`;
 
     this.http.get<any>(apiUrl).subscribe({
       next: (data) => {

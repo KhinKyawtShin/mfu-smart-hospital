@@ -15,12 +15,10 @@ import { Router } from '@angular/router';
 })
 export class ConfirmAppointmentComponent implements OnInit {
   patient: string= "gpuo23pktpz3m1djwn5xz6l6"
-  doctor: string = "Dr. Inzali Moe Pyae";
   queueNumber: number=1009;
   dateTime: Date = new Date();
   doctorId: string = "u9sbsuuiwl3wn7qbvn86tm82";
   info: any;
-   // Replace with your Strapi base URL
 
   constructor(private http: HttpClient, private router: Router) {}
 
