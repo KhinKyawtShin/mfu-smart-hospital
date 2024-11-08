@@ -484,13 +484,16 @@ export interface ApiQueueQueue extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::queue.queue'> &
       Schema.Attribute.Private;
-    patient: Schema.Attribute.Relation<'oneToOne', 'api::patient.patient'>;
     publishedAt: Schema.Attribute.DateTime;
     queueNumber: Schema.Attribute.BigInteger;
     queueTime: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
