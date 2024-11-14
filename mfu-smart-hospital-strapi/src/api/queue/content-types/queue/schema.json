@@ -24,10 +24,10 @@
       "target": "api::doctor.doctor",
       "inversedBy": "queues"
     },
-    "patient": {
+    "users_permissions_user": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::patient.patient"
+      "target": "plugin::users-permissions.user"
     }
   }
 }
