@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import{ ActivatedRoute, Router } from '@angular/router';
+import { Route } from '@angular/router';
 
 interface TimeSlot {
   time: string;
@@ -31,8 +33,20 @@ interface TimeSlot {
   templateUrl: './visit-time.component.html',
   styleUrls: ['./visit-time.component.css'],
 })
-export class VisitTimeComponent {
+export class VisitTimeComponent implements OnInit {
+  selectedDoctor: string | null = null;
   bookedTimes: Set<string> = new Set(); // Assuming bookedTimes holds strings of booked time slots
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.selectedDoctor = params['doctor'] || null;
+      console.log('Selected Dcotor:', this.selectedDoctor);
+    });
+  }
+
+
 
   bookTime(time: TimeSlot): void {
     if (!time.booked) {
@@ -100,12 +114,14 @@ export class VisitTimeComponent {
   }
 
   goBack(): void {
-    console.log('Navigating back...');
+    this.router.navigate(['/doctor']);
   }
 
   goNext(): void {
     if (this.selectedDate && this.selectedSlot) {
       console.log('Proceeding to the next step...');
+      this.router.navigate(['/confirm-appointment'], {queryParams: {doctor: this.selectedDoctor, date: this.selectedDate, time: this.selectedSlot.time}});
+      console.log('Doctor:', this.selectedDoctor, 'Selected date:', this.selectedDate, 'Selected time:', this.selectedSlot.time);
     } else {
       console.log('Please select a date and time slot first.');
     }

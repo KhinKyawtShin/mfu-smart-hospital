@@ -52,6 +52,6 @@ export class CentersComponent implements OnInit {
   }
 
   goNext(): void {
-    this.router.navigate(['/doctor']);
+    this.router.navigate(['/doctor'], { queryParams: { center: this.selectedCenter } });
   }
 }

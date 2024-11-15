@@ -3,8 +3,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
-import { CardComponent } from "../../components/card/card.component";
-
+import { ActivatedRoute } from '@angular/router';
+import { CardComponent } from '../../components/card/card.component';
+import { Router } from '@angular/router';
 
 @Component({
  selector: 'app-doctor',
@@ -14,14 +15,20 @@ import { CardComponent } from "../../components/card/card.component";
  styleUrl: './doctor.component.css'
 })
 export class DoctorComponent implements OnInit {
- doctors: any[] = [];
- filteredDoctors: any[] = []; // Store filtered doctors
+  selectedCenter: string | null = null;
+  selectedDoctor: string | null = null;
+  doctors: any[] = [];
+  filteredDoctors: any[] = []; // Store filtered doctors
 
 
- constructor(private http:HttpClient) {}
+ constructor(private http:HttpClient, private route: ActivatedRoute, private router: Router) {}
 
 
  ngOnInit(): void{
+  this.route.queryParams.subscribe(params => {
+    this.selectedCenter = params['center'] || null;
+    console.log('Selected Center:', this.selectedCenter);
+  });
    this.fetchDoctorData();
  }
 
@@ -35,7 +42,11 @@ export class DoctorComponent implements OnInit {
           name: doctor.name,
           department: doctor.department?.name
         }));
-        this.filteredDoctors = this.doctors; // 
+
+        this.filteredDoctors = this.selectedCenter 
+            ? this.doctors.filter(doctor => doctor.department === this.selectedCenter)
+            : this.doctors;
+
       } else {
         console.warn('No doctors available in API response.');
       }
@@ -47,17 +58,16 @@ export class DoctorComponent implements OnInit {
    })
  }
 
- filterDoctorsByDepartment(department: string): void {
-  this.filteredDoctors = this.doctors.filter(doctor => doctor.department === department);
-}
+  chooseDoctor(doctorName: string): void {
+    this.selectedDoctor = doctorName;
+  }
+
+  goNext(): void {
+    this.router.navigate(['/visit-time'], { queryParams: { center: this.selectedCenter, doctor: this.selectedDoctor } });
+  }
 
 
- goNext(): void {
-
-
- }
-
-
- goBack(): void {
- }
+  goBack(): void {
+    this.router.navigate(['/centers']);
+  }
 }
