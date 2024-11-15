@@ -7,7 +7,7 @@
         <div class="col-9 d-flex justify-content-center">
             <div class="col-9 form-group d-flex flex-column flex-md-row align-items-center">
                 <label class="col-auto mb-2 mb-md-0" for="doctor">Doctor :</label>
-                <input type="text" class="form-control text-center" id="doctor" value="{{info?.name}}" readonly>
+                <input type="text" class="form-control text-center" id="doctor" value="{{doctor}}" readonly>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
         <div class="col-9 d-flex justify-content-center">
             <div class="col-9 form-group d-flex flex-column flex-md-row align-items-center">
                 <label class="col-auto mb-2 mb-md-0" for="department">Center and Clinic :</label>
-                <input type="text" class="form-control text-center" id="department" value="{{info?.department?.name}}" readonly>
+                <input type="text" class="form-control text-center" id="department" value="{{center}}" readonly>
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@
         <div class="col-9 d-flex justify-content-center">
             <div class="col-9 form-group d-flex flex-column flex-md-row align-items-center">
                 <label class="col-auto mb-2 mb-md-0" for="dateTime">Appointment Time :</label>
-                <input type="text" class="form-control text-center" id="dateTime" value="{{ dateTime | date: 'medium' }}" readonly>
+                <input type="text" class="form-control text-center" id="dateTime" value="{{ date | date: 'mediumDate' }} : {{ time }}" readonly>
             </div>
         </div>
     </div>

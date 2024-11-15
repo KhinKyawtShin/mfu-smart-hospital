@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import{ ActivatedRoute, Router } from '@angular/router';
-import { Route } from '@angular/router';
 
 interface TimeSlot {
   time: string;
@@ -34,15 +33,21 @@ interface TimeSlot {
   styleUrls: ['./visit-time.component.css'],
 })
 export class VisitTimeComponent implements OnInit {
+  selectedCenter: string | null = null;
   selectedDoctor: string | null = null;
+  selectedDoctorId: string | null = null;
   bookedTimes: Set<string> = new Set(); // Assuming bookedTimes holds strings of booked time slots
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
+      this.selectedCenter = params['center'] || null;
       this.selectedDoctor = params['doctor'] || null;
+      this.selectedDoctorId = params['doctorId'] || null;
+      console.log('Selected Center:', this.selectedCenter);
       console.log('Selected Dcotor:', this.selectedDoctor);
+      console.log('Selected DoctorId:', this.selectedDoctorId);
     });
   }
 
@@ -120,8 +125,8 @@ export class VisitTimeComponent implements OnInit {
   goNext(): void {
     if (this.selectedDate && this.selectedSlot) {
       console.log('Proceeding to the next step...');
-      this.router.navigate(['/confirm-appointment'], {queryParams: {doctor: this.selectedDoctor, date: this.selectedDate, time: this.selectedSlot.time}});
-      console.log('Doctor:', this.selectedDoctor, 'Selected date:', this.selectedDate, 'Selected time:', this.selectedSlot.time);
+      this.router.navigate(['/confirm-appointment'], {queryParams: {center: this.selectedCenter, doctor: this.selectedDoctor, doctorId: this.selectedDoctorId, date: this.selectedDate, time: this.selectedSlot.time}});
+      console.log('Doctor:', (this.selectedDoctor ?? 'null') + this.selectedDoctorId, 'Selected date:', this.selectedDate, 'Selected time:', this.selectedSlot.time);
     } else {
       console.log('Please select a date and time slot first.');
     }

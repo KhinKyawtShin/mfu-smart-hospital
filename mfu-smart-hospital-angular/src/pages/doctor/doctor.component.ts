@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 export class DoctorComponent implements OnInit {
   selectedCenter: string | null = null;
   selectedDoctor: string | null = null;
+  selectedDoctorId: string | null = null;
   doctors: any[] = [];
   filteredDoctors: any[] = []; // Store filtered doctors
 
@@ -40,6 +41,7 @@ export class DoctorComponent implements OnInit {
       if (response && response.data && response.data.length > 0){
         this.doctors = response.data.map((doctor: any)=> ({
           name: doctor.name,
+          id: doctor.documentId,
           department: doctor.department?.name
         }));
 
@@ -60,10 +62,11 @@ export class DoctorComponent implements OnInit {
 
   chooseDoctor(doctorName: string): void {
     this.selectedDoctor = doctorName;
+    this.selectedDoctorId = this.filteredDoctors.find(doctor => doctor.name === doctorName)?.id;
   }
 
   goNext(): void {
-    this.router.navigate(['/visit-time'], { queryParams: { center: this.selectedCenter, doctor: this.selectedDoctor } });
+    this.router.navigate(['/visit-time'], { queryParams: { center: this.selectedCenter, doctor: this.selectedDoctor, doctorId: this.selectedDoctorId } });
   }
 
 
