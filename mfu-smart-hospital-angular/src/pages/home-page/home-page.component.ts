@@ -6,11 +6,12 @@ import { FooterComponent } from "../footer/footer.component";
 import { Router } from '@angular/router';
 import { QueueService } from '../../services/queue.service';
 import { DatePipe } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  providers: [DatePipe], //Noelle added this one XD
+  providers: [DatePipe,UserService], //Noelle added this one XD
   imports: [HeaderComponent, FooterComponent, HttpClientModule, CommonModule], // Add CommonModule here
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
@@ -19,12 +20,21 @@ export class HomePageComponent implements OnInit {
   queue: any;
 
 
-  constructor(private http: HttpClient, private router: Router, private queueService: QueueService) {}
-  patientName: string = 'lynn';
+  constructor(private http: HttpClient, private router: Router, private queueService: QueueService, private userService: UserService) {}
+  patientName: string = '';
   
 
   ngOnInit(): void {
-    this.fetchQueueByPatientName();
+        // Retrieve the username from UserService
+        const currentUser = this.userService.getCurrentUser();
+        if (currentUser) {
+          console.log('Logged in as:', currentUser.username);
+          this.patientName = currentUser.username;
+          this.fetchQueueByPatientName();
+        } else {
+          console.warn('No user is logged in.');
+          this.queue = null;
+        }
   }
 
   fetchQueueByPatientName(): void {
