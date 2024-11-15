@@ -26,6 +26,16 @@
       "relation": "oneToMany",
       "target": "api::queue.queue",
       "mappedBy": "doctor"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

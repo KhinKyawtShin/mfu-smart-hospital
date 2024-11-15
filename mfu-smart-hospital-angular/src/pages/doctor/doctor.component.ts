@@ -20,7 +20,7 @@ export class DoctorComponent implements OnInit {
   selectedDoctorId: string | null = null;
   doctors: any[] = [];
   filteredDoctors: any[] = []; // Store filtered doctors
-
+  baseUrl: string = 'http://localhost:1337'
 
  constructor(private http:HttpClient, private route: ActivatedRoute, private router: Router) {}
 
@@ -41,8 +41,8 @@ export class DoctorComponent implements OnInit {
       if (response && response.data && response.data.length > 0){
         this.doctors = response.data.map((doctor: any)=> ({
           name: doctor.name,
-          id: doctor.documentId,
-          department: doctor.department?.name
+          department: doctor.department.name,
+          imageUrl: this.baseUrl + doctor.image.url,
         }));
 
         this.filteredDoctors = this.selectedCenter 
