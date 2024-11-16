@@ -10,7 +10,7 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-visit-time-chen',
   standalone: true,
@@ -44,7 +44,8 @@ export class VisitTimeChenComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -152,7 +153,7 @@ export class VisitTimeChenComponent {
   }
 
   goBack(): void {
-    this.router.navigate(['/previous-page']); // Adjust this route as needed
+    this.location.back(); // Adjust this route as needed
   }
 
   goNext(): void {

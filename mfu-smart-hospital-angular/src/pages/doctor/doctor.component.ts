@@ -41,6 +41,7 @@ export class DoctorComponent implements OnInit {
       if (response && response.data && response.data.length > 0){
         this.doctors = response.data.map((doctor: any)=> ({
           name: doctor.name,
+          documentId: doctor.documentId,
           department: doctor.department.name,
           imageUrl: this.baseUrl + doctor.image.url,
         }));
@@ -62,7 +63,8 @@ export class DoctorComponent implements OnInit {
 
   chooseDoctor(doctorName: string): void {
     this.selectedDoctor = doctorName;
-    this.selectedDoctorId = this.filteredDoctors.find(doctor => doctor.name === doctorName)?.id;
+    this.selectedDoctorId = this.filteredDoctors.find(doctor => doctor.name === doctorName)?.documentId;
+    console.log(this.selectedDoctorId);
   }
 
   goNext(): void {
