@@ -1,0 +1,134 @@
+/* Container styling for centered card */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+  }
+  
+  /* Updated Card styling with fixed height */
+  .card {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 20px; /* Space between card and navigation buttons */
+    height: 500px; /* Set fixed height */
+    overflow: hidden; /* Hide overflow outside the card */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Title styling */
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Calendar picker full-width styling */
+  .calendar-picker {
+    margin-bottom: 20px;
+  }
+  
+  /* Style mat-form-field to take up full width */
+  .full-width {
+    width: 100%;
+  }
+  
+  /* Grid layout for time slots */
+  .time-slots-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    flex-grow: 1; /* Allow it to grow and fill the remaining space */
+    max-height: 300px; /* Limit the height to make it scrollable */
+    padding-right: 10px; /* Add padding to prevent content from being cut off */
+  }
+  
+  /* Individual time slot styling */
+  .time-slot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Style for booked slots */
+  .time-slot.booked {
+    background-color: #e0e0e0;
+    color: #888;
+  }
+  
+  /* Style for selected time slot */
+  .time-slot.selected {
+    background-color: #d1e7ff;
+    border-color: #2196f3;
+    color: #2196f3;
+  }
+  
+  /* Navigation buttons styling */
+  .row {
+    width: 100%;
+    display: flex;
+    padding: 0 50px;
+    margin: 30px 0;
+    justify-content: space-between;
+  }
+  
+  .row button {
+    width: 150px;
+    height: 55px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  /* Ensure that the mat-datepicker background is white */
+  ::ng-deep .mat-calendar {
+    background-color: #ffffff; /* Set the background color to white */
+    color: #000000; /* Set text color to black for better readability */
+  }
+  
+  /* Styling for the date cells */
+  ::ng-deep .mat-calendar-body-cell {
+    background-color: transparent; /* Keep individual cells transparent */
+    color: #000000; /* Make sure text color is black for visibility */
+  }
+  
+  ::ng-deep .mat-calendar-body-cell:hover {
+    background-color: #f0f0f0; /* Light gray hover effect for better user experience */
+  }
+  
+  ::ng-deep .mat-calendar-body-selected {
+    background-color: #2196f3 !important; /* Blue background for selected date */
+    color: #ffffff !important; /* White text for selected date */
+  }
+  
+  ::ng-deep .mat-calendar-body-today {
+    border-color: #2196f3; /* Highlight today's date with blue border */
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

@@ -66,7 +66,7 @@ export class DoctorComponent implements OnInit {
   }
 
   goNext(): void {
-    this.router.navigate(['/visit-time'], { queryParams: { center: this.selectedCenter, doctor: this.selectedDoctor, doctorId: this.selectedDoctorId } });
+    this.router.navigate(['/visit-time-chen'], { queryParams: { center: this.selectedCenter, doctor: this.selectedDoctor, doctorId: this.selectedDoctorId } });
   }
 
 

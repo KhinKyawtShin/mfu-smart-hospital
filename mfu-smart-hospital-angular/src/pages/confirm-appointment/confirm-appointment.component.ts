@@ -5,10 +5,11 @@ import { CommonModule, Time } from '@angular/common'; // Import CommonModule
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-confirm-appointment',
   standalone: true,
+  providers:[UserService],
   imports: [HeaderComponent, FooterComponent, CommonModule, HttpClientModule],
   templateUrl: './confirm-appointment.component.html',
   styleUrl: './confirm-appointment.component.css'
@@ -23,7 +24,7 @@ export class ConfirmAppointmentComponent implements OnInit {
   queueNumber: number=1009;
   info: any;
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -59,17 +60,22 @@ export class ConfirmAppointmentComponent implements OnInit {
   }
   */
   submitAppointment() {
-    if (!this.info) {
-      console.error('No doctor information available for submission.');
-      return; // Exit if doctor information is not available
-    }
+    
+    console.log(this.doctorId);
+    console.log(this.userService.getCurrentUser()?.documentId)
+    console.log(this.queueNumber);
+    console.log(this.date);
+    console.log(this.time);
+
+    const queueTime = new Date(`${this.date}T${this.time}:00`).toISOString();
 
     const appointmentData = {
       doctor: this.doctorId, // Use doctor's ID for the relation
-      patient: this.patient, 
+      users_permissions_user: this.userService.getCurrentUser()?.documentId, 
       queueNumber: this.queueNumber,// Patient ID (you can adjust this based on how your patient is structured)
-      queueTime: this.date && this.time
+      queueTime: queueTime
     };
+    console.log(queueTime);
 
     const baseUrl: string = 'http://localhost:1337/api/queues'; // API endpoint for your queue collection
 
