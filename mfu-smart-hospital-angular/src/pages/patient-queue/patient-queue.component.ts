@@ -4,11 +4,11 @@ import { QueueService } from '../../services/queue.service';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-patient-queue',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, HttpClientModule],
   templateUrl: './patient-queue.component.html',
   styleUrls: ['./patient-queue.component.css']
 })
