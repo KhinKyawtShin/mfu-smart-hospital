@@ -1,32 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule, Time } from '@angular/common'; // Import CommonModule
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
-import { Router } from '@angular/router';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-confirm-appointment',
   standalone: true,
+  providers:[UserService],
   imports: [HeaderComponent, FooterComponent, CommonModule, HttpClientModule],
   templateUrl: './confirm-appointment.component.html',
   styleUrl: './confirm-appointment.component.css'
 })
 export class ConfirmAppointmentComponent implements OnInit {
-  patient: string= "gpuo23pktpz3m1djwn5xz6l6"
+  center: string | null = null; //to display center name
+  doctor: string | null = null;  //to display doctor name
+  doctorId: string | null = null; //to post to strapi
+  date: Date | null = null; //Fix to display with time
+  time: string | null = null; //**** */
+  patient: string | null = null;
   queueNumber: number=1009;
-  dateTime: Date = new Date();
-  doctorId: string = "u9sbsuuiwl3wn7qbvn86tm82";
   info: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.fetchDoctorDepartment();
+    this.route.queryParams.subscribe(params => {
+      this.center = params['center'] || null;
+      this.doctor = params['doctor'] || null;
+      this.doctorId = params['doctorId'] || null;
+      this.date = params['date'] || null;
+      this.time = params['time'] || null;
+      console.log('Selected DoctorId:', this.doctorId); //
+      console.log('Selected Date:', this.date); // 
+      console.log('Selected Time:', this.time); //
+    });
   }
 
-
+  /*
   fetchDoctorDepartment() {
     const baseUrl: string = `http://localhost:1337/api/doctors/${this.doctorId}?populate=department`;
     this.http.get<any>(baseUrl).subscribe({
@@ -45,19 +58,24 @@ export class ConfirmAppointmentComponent implements OnInit {
       }
     });
   }
-
+  */
   submitAppointment() {
-    if (!this.info) {
-      console.error('No doctor information available for submission.');
-      return; // Exit if doctor information is not available
-    }
+    
+    console.log(this.doctorId);
+    console.log(this.userService.getCurrentUser()?.documentId)
+    console.log(this.queueNumber);
+    console.log(this.date);
+    console.log(this.time);
+
+    const queueTime = new Date(`${this.date}T${this.time}:00`).toISOString();
 
     const appointmentData = {
-      doctor: this.info.documentId, // Use doctor's ID for the relation
-      patient: this.patient, 
+      doctor: this.doctorId, // Use doctor's ID for the relation
+      users_permissions_user: this.userService.getCurrentUser()?.documentId, 
       queueNumber: this.queueNumber,// Patient ID (you can adjust this based on how your patient is structured)
-      queueTime: this.dateTime // Convert date to ISO string for submission
+      queueTime: queueTime
     };
+    console.log(queueTime);
 
     const baseUrl: string = 'http://localhost:1337/api/queues'; // API endpoint for your queue collection
 

@@ -63,5 +63,13 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/patient-queue']);
   }
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  makeAppointment(): void {
+    this.router.navigate(['/centers']);
+  }
+
+  makeMedicalCheckup(): void {
+    this.router.navigate(['/visit-time']);
+  }
 }
 

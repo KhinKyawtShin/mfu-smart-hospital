@@ -4,6 +4,7 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CardComponent } from "../../components/card/card.component";
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-centers',
@@ -17,7 +18,7 @@ export class CentersComponent implements OnInit {
   selectedCenter: string | null = null;
   baseUrl: string = 'http://localhost:1337'
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchCentersData();
@@ -47,10 +48,10 @@ export class CentersComponent implements OnInit {
   }
 
   goBack(): void {
-    // Logic for back button (if needed)
+    this.router.navigate(['/home-page']);
   }
 
   goNext(): void {
-    // Logic for next button (if needed)
+    this.router.navigate(['/doctor'], { queryParams: { center: this.selectedCenter } });
   }
 }

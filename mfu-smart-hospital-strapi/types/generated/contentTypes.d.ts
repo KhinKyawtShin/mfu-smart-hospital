@@ -419,6 +419,7 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::department.department'
     >;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

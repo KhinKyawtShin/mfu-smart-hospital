@@ -35,3 +35,7 @@
 .btn-primary:hover {
   background-color: #880016;
 }
+
+h3 .btn {
+  cursor: pointer;
+}

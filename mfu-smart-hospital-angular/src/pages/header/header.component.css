@@ -1,31 +1,155 @@
-.title{
-  margin-left: 20px;
+/* navbar.component.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Add shadow */
 }
 
-.custom-navbar {
-  background-color: #B8001F !important; /* Set background color */
+.navbar-brand {
+  display: flex;
+  align-items: center;
 }
 
-.custom-navbar .nav-link {
-  color: white; /* Change text color for better contrast */
+.brand{
+  display: flex;
+  flex-direction: column;
 }
 
-.custom-navbar .navbar-brand {
-  color: white; /* Change brand text color */
+.navbar-logo {
+  height: 60px;
+  margin-right: 10px;
+
 }
 
-.custom-navbar .nav-link:hover {
-  color: #FFD700; /* Change to gold or any hover color you prefer */
+.brand-divider {
+  height: 40px;
+  width: 1px;
+  background-color: #ddd;
+  margin: 0 10px;
 }
 
-.custom-navbar .navbar-nav {
-  margin-left: auto; /* Aligns nav items to the right */
+.title-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  margin: 5px 0;
 }
 
-.navbar-nav .nav-item {
-  margin-right: 20px; /* Adjust this value as needed */
+.navbar-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
 }
 
-.navbar-nav .nav-item:last-child {
-  margin-right: 10px; /* Remove margin from the last item */
+.navbar-title span{
+  font-size: 24px;
+  font-weight: bold;
+  color: #8E8D8D;
 }
+
+.navbar-subtitle {
+  font-size: 14px;
+  color: #666;
+  letter-spacing: 3px;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  margin-right: 100px;
+}
+
+.lang-option {
+  font-size: 16px;
+  cursor: pointer;
+  color: #000;
+  margin: 0 5px;
+}
+
+.lang-option.active {
+  color: #900;
+}
+
+.divider {
+  font-size: 16px;
+  color: #000;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.user-name {
+  font-size: 16px;
+  color: #000;
+  margin-right: 5px;
+}
+
+.dropdown-arrow {
+  font-size: 14px;
+  color: #000;
+}
+
+/*dorpdown menu*/
+.dropdown-menu {
+  position: absolute;
+  right: 15px;
+  top: 80px; /* Adjust to align with the user profile */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.dropdown-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  padding: 5px 10px;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.dropdown-menu li a img{
+  margin-right: 9px;
+  margin-top: -3px;
+  height: 20px;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+

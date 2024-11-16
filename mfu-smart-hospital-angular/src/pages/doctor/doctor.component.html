@@ -1,25 +1,20 @@
 <app-header></app-header>
 
-<div class="department-filters">
-    <button (click)="filterDoctorsByDepartment('Brain')">Brain</button>
-    <button (click)="filterDoctorsByDepartment('Dental')">Dental</button>
-    <button (click)="filterDoctorsByDepartment('Cancer')">Cancer</button>
-    <!-- Add more departments as needed -->
-</div>
-
 <div class="doctors-container">
-   <h2>Child Specialist Doctors</h2>
+   <h2>{{selectedCenter}} Center</h2>
    <div class="doctor-cards">
-        <div class="doctor-card" *ngFor="let doctor of filteredDoctors">
-            <img [src]="doctor.imageUrl" alt="{{doctor.name}}'s image" class="doctor-image" />
-            <h6>{{doctor.name}}</h6>
-            <p>{{doctor.department}}</p>
-        </div>
+        <app-card
+            *ngFor="let doctor of filteredDoctors"
+            [name]="doctor.name"
+            [imageUrl]="doctor.imageUrl"
+            [isSelected]="selectedDoctor === doctor.name"
+            (click)="chooseDoctor(doctor.name)">
+        </app-card>
     </div>
 
-   <div class="button-container">
-       <button (click)="goBack()">Back</button>
-       <button (click)="goNext()">Next</button>
+   <div class="row">
+       <button class="back-button" (click)="goBack()">Back</button>
+       <button class="next-button" (click)="goNext()">Next</button>
    </div>
 </div>
 

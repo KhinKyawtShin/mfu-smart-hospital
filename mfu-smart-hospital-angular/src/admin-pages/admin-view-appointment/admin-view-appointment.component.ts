@@ -27,14 +27,14 @@ export class AdminViewAppointmentComponent implements OnInit{
 }
 
 fetchAppointmentData(): void {
-  this.http.get<any>('http://localhost:1337/api/queues?populate=patient').subscribe({
+  this.http.get<any>('http://localhost:1337/api/queues?populate=users_permissions_user').subscribe({
     next: (response) => {
       if (response && response.data && response.data.length > 0) {
         const queueData = response.data;
         this.appointments = queueData.map((queue: any) => ({
           id: queue.id,
           documentId: queue.documentId,
-          patientName: queue.patient?.name || 'Unknown',
+          patientName: queue.users_permissions_user?.username || 'Unknown',
           queueTime: queue.queueTime,
           queueNumber: queue.queueNumber,
           status: 'Pending'

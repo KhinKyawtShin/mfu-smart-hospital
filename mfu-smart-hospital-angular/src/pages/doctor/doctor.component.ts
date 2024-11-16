@@ -3,8 +3,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
-import { CardComponent } from "../../components/card/card.component";
-
+import { ActivatedRoute } from '@angular/router';
+import { CardComponent } from '../../components/card/card.component';
+import { Router } from '@angular/router';
 
 @Component({
  selector: 'app-doctor',
@@ -14,14 +15,21 @@ import { CardComponent } from "../../components/card/card.component";
  styleUrl: './doctor.component.css'
 })
 export class DoctorComponent implements OnInit {
- doctors: any[] = [];
- filteredDoctors: any[] = []; // Store filtered doctors
+  selectedCenter: string | null = null;
+  selectedDoctor: string | null = null;
+  selectedDoctorId: string | null = null;
+  doctors: any[] = [];
+  filteredDoctors: any[] = []; // Store filtered doctors
+  baseUrl: string = 'http://localhost:1337'
 
-
- constructor(private http:HttpClient) {}
+ constructor(private http:HttpClient, private route: ActivatedRoute, private router: Router) {}
 
 
  ngOnInit(): void{
+  this.route.queryParams.subscribe(params => {
+    this.selectedCenter = params['center'] || null;
+    console.log('Selected Center:', this.selectedCenter);
+  });
    this.fetchDoctorData();
  }
 
@@ -33,9 +41,15 @@ export class DoctorComponent implements OnInit {
       if (response && response.data && response.data.length > 0){
         this.doctors = response.data.map((doctor: any)=> ({
           name: doctor.name,
-          department: doctor.department?.name
+          documentId: doctor.documentId,
+          department: doctor.department.name,
+          imageUrl: this.baseUrl + doctor.image.url,
         }));
-        this.filteredDoctors = this.doctors; // 
+
+        this.filteredDoctors = this.selectedCenter 
+            ? this.doctors.filter(doctor => doctor.department === this.selectedCenter)
+            : this.doctors;
+
       } else {
         console.warn('No doctors available in API response.');
       }
@@ -47,17 +61,18 @@ export class DoctorComponent implements OnInit {
    })
  }
 
- filterDoctorsByDepartment(department: string): void {
-  this.filteredDoctors = this.doctors.filter(doctor => doctor.department === department);
-}
+  chooseDoctor(doctorName: string): void {
+    this.selectedDoctor = doctorName;
+    this.selectedDoctorId = this.filteredDoctors.find(doctor => doctor.name === doctorName)?.documentId;
+    console.log(this.selectedDoctorId);
+  }
+
+  goNext(): void {
+    this.router.navigate(['/visit-time-chen'], { queryParams: { center: this.selectedCenter, doctor: this.selectedDoctor, doctorId: this.selectedDoctorId } });
+  }
 
 
- goNext(): void {
-
-
- }
-
-
- goBack(): void {
- }
+  goBack(): void {
+    this.router.navigate(['/centers']);
+  }
 }
