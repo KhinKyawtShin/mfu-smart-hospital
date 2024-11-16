@@ -17,7 +17,7 @@
     </div>
     <div class="user-profile" (click)="toggleDropdown()">
       <span class="user-icon"></span>
-      <span class="user-name">John Doe</span>
+      <span class="user-name">{{userName}}</span>
       <span class="dropdown-arrow">&#9662;</span>
     </div>
     <div class="dropdown-menu" *ngIf="isDropdownOpen">
