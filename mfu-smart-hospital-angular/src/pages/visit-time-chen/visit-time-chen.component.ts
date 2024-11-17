@@ -62,7 +62,7 @@ export class VisitTimeChenComponent {
 
   // Fetch booked slots by doctor and organize by date
   fetchQueueByDoctorName(): void {
-    const apiUrl = `http://localhost:1337/api/queues?populate[doctor]=*&filters[doctor][documentId][$eq]=zq43wj2fxhdvies0uke305j5`;
+    const apiUrl = `http://localhost:1337/api/queues?populate[doctor]=*&filters[doctor][documentId][$eq]=${this.doctorId}`;
   
     this.http.get<any>(apiUrl).subscribe({
       next: (data) => {
