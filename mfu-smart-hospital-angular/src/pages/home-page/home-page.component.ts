@@ -30,23 +30,26 @@ export class HomePageComponent implements OnInit {
         if (currentUser) {
           console.log('Logged in as:', currentUser.username);
           this.patientName = currentUser.username;
-          this.fetchQueueByPatientName();
+          this.fetchQueueByPatientData();
+          //this.fetchDoctorImage();
         } else {
           console.warn('No user is logged in.');
           this.queue = null;
         }
   }
 
-  fetchQueueByPatientName(): void {
+  fetchQueueByPatientData(): void {
     const apiUrl = `http://localhost:1337/api/queues?populate[users_permissions_user]=*&populate[doctor]=*&filters[users_permissions_user][username][$eq]=${this.patientName}`;
-
+    
     this.http.get<any>(apiUrl).subscribe({
       next: (data) => {
         console.log(data);
         if (data && data.data && data.data.length > 0) {
           this.queue = data.data[0];
+
           console.log('Queue Time:', this.queue.queueTime);//Noelle added this one XD
           this.queueService.setPatientData(this.queue);//Noelle added this one XD
+          this.fetchDoctorImage();
         } else {
           this.queue = null;
         }
@@ -57,6 +60,33 @@ export class HomePageComponent implements OnInit {
       }
     });
   }
+
+  fetchDoctorImage(): void {
+    if (!this.queue || !this.queue.doctor?.documentId) {
+      console.warn('Doctor information is not available to fetch the image.');
+      return;
+    }
+  
+    const doctorId = this.queue.doctor.documentId;
+    const apiUrl = `http://localhost:1337/api/doctors/${doctorId}?populate=*`;
+  
+    this.http.get<any>(apiUrl).subscribe({
+      next: (response) => {
+        console.log('Doctor Image API Response:', response);
+        if (response && response.data) {
+          this.queue.doctorImageUrl = `http://localhost:1337` + response.data.image?.url || '';
+          console.log('Doctor Image URL:', this.queue.doctorImageUrl);
+        } else {
+          console.warn('No image data available for the doctor.');
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching doctor image:', err);
+      }
+    });
+  }
+  
+
    //Noelle added this one XD
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   goToQueuePage(): void {
