@@ -34,9 +34,7 @@
 }
 
 .table-container {
-    margin: 0 100px; 
-    margin-top: 50px;
-    overflow-x: auto; 
+    margin: 50px 100px;
 }
 
 .table th, .table td {

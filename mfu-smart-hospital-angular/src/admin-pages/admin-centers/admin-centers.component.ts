@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminHeaderComponent } from '../admin-header/admin-header.component'; 
+import { HeaderComponent } from "../../pages/header/header.component";
 import { CardComponent } from "../../components/card/card.component";
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-centers',
   standalone: true,
-  imports: [AdminHeaderComponent, CardComponent, CommonModule, HttpClientModule],
+  imports: [HeaderComponent, CardComponent, CommonModule, HttpClientModule],
   templateUrl: './admin-centers.component.html',
   styleUrl: './admin-centers.component.css'
 })
@@ -17,7 +17,7 @@ export class AdminCentersComponent {
   selectedCenter: string | null = null;
   baseUrl: string = 'http://localhost:1337'
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchCentersData();
@@ -47,10 +47,10 @@ export class AdminCentersComponent {
   }
 
   goBack(): void {
-    // Logic for back button (if needed)
+    this.router.navigate(['/admin-login']);
   }
 
   goNext(): void {
-    // Logic for next button (if needed)
+    this.router.navigate(['/admin-doctor'], { queryParams: { center: this.selectedCenter } });
   }
 }

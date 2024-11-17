@@ -1,0 +1,42 @@
+.doctors-container {
+    padding: 20px;
+    margin-bottom: 50px;
+  }
+ 
+ 
+  .doctors-container h2 {
+    text-align: center; /* Center the heading text */
+    margin-bottom: 50px; /* Optional: add some space below the heading */
+    color: #880016;
+    font-size: 40px;
+    font-weight: bold;
+  }
+  
+  .doctor-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;/* Center cards horizontally */
+    max-width: 800px; /* Set a max width for the cards container */
+    width: 80%;
+    min-height: 330px;
+    margin: auto;
+  }
+   
+   
+  .row {
+    width: 100%;
+    display: flex;
+    padding: 0 50px;
+    margin: 30px 0;
+    justify-content: space-between;
+}
+
+.row button {
+    width: 150px;
+    height: 55px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}

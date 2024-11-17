@@ -1,4 +1,4 @@
-<app-admin-header></app-admin-header>
+<app-header></app-header>
 
 <div class="container">
     <h2>Centers & Clinics</h2>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="row">
-        <button class="back-button">Back</button>
-        <button class="next-button">Next</button>
+        <button class="back-button" (click)="goBack()">Back</button>
+        <button class="next-button" (click)="goNext()">Next</button>
     </div>
 </div>
