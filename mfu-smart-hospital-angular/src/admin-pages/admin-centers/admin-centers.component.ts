@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from "../../pages/header/header.component";
+import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { CardComponent } from "../../components/card/card.component";
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin-centers',
   standalone: true,
-  imports: [HeaderComponent, CardComponent, CommonModule, HttpClientModule],
+  imports: [AdminHeaderComponent, CardComponent, CommonModule, HttpClientModule],
   templateUrl: './admin-centers.component.html',
   styleUrl: './admin-centers.component.css'
 })

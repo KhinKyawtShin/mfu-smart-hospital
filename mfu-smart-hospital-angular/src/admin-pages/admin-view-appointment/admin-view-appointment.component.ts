@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from '../../pages/header/header.component';
+import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-view-appointment',
   standalone: true,
-  imports: [HeaderComponent, CommonModule, HttpClientModule, FormsModule],
+  imports: [AdminHeaderComponent, CommonModule, HttpClientModule, FormsModule],
   providers: [DatePipe],
   templateUrl: './admin-view-appointment.component.html',
   styleUrl: './admin-view-appointment.component.css'

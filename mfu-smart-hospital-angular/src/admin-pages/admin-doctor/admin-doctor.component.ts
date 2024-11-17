@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../../pages/header/header.component';
+import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { FooterComponent } from '../../pages/footer/footer.component';
 import { ActivatedRoute } from '@angular/router';
 import { CardComponent } from '../../components/card/card.component';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin-doctor',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, HeaderComponent, FooterComponent, CardComponent],
+  imports: [CommonModule, HttpClientModule, AdminHeaderComponent, FooterComponent, CardComponent],
   templateUrl: './admin-doctor.component.html',
   styleUrl: './admin-doctor.component.css'
 })
