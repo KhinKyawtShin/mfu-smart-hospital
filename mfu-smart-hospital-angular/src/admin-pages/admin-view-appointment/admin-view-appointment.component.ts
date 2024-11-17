@@ -57,23 +57,23 @@ export class AdminViewAppointmentComponent implements OnInit {
       this.http.get<any>(`http://localhost:1337/api/doctors?populate=department`).subscribe({
         next: (response) => {
           this.doctors = response.data.filter((doc: any) => doc.department.id === this.selectedDepartment);
-          console.log('Filtered Doctors:', this.doctors); // Debugging doctors list
+          console.log('Filtered Doctors:', this.doctors); 
         },
         error: (err) => {
           console.error('Error fetching doctors:', err);
         }
       });
     } else {
-      this.doctors = []; // Reset doctors if no department is selected
+      this.doctors = [];
     }
-    this.filterAppointments(); // Re-filter appointments after department change
+    this.filterAppointments();
   }
   
   
   // Filter appointments when doctor is selected
   onDoctorChange(event: any): void {
     this.selectedDoctor = event.value;
-    this.filterAppointments(); // Re-filter appointments after doctor change
+    this.filterAppointments(); 
   }
 
 
@@ -124,14 +124,14 @@ export class AdminViewAppointmentComponent implements OnInit {
   //search function
   search(): void {
     if (this.searchTerm) {
-        this.filterAppointments(); // This will integrate department, doctor, and search term filtering
+        this.filterAppointments(); 
     } else {
-        this.filteredAppointments = [...this.appointments]; // Reset to all appointments if search term is empty
+        this.filteredAppointments = [...this.appointments];
     }
 }
 
 //goBack function
 goBack(): void {
-  this.router.navigate(['/admin-doctor']);
+  this.router.navigate(['/admin-login']);
 }
 }
