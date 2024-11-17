@@ -1,41 +1,42 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <app-header></app-header>
 
-    <h3 style=" color: #b8001f;" class="text-center mt-4 mb-4">Appointment Information</h3>
+<h3 class="text-center mt-4 mb-4" style="color: #b8001f;">Appointment Information</h3>
 
-    <div class="row justify-content-center">
-        <div class="col-9 d-flex justify-content-center">
-            <div class="col-9 form-group d-flex flex-column flex-md-row align-items-center">
-                <label class="col-auto mb-2 mb-md-0" for="doctor">Doctor :</label>
-                <input type="text" class="form-control text-center" id="doctor" value="{{doctor}}" readonly>
-            </div>
+<div class="row justify-content-center">
+    <div class="col-9 max-width-800">
+        <div class="form-group d-flex justify-content-between align-items-center">
+            <label class="col-auto mr-0 pl-0" for="doctor">Doctor :</label>
+            <input type="text" class="form-control text-center max-width-373" id="doctor" value="{{doctor}}" readonly>
         </div>
     </div>
+</div>
 
-    <div class="row justify-content-center">
-        <div class="col-9 d-flex justify-content-center">
-            <div class="col-9 form-group d-flex flex-column flex-md-row align-items-center">
-                <label class="col-auto mb-2 mb-md-0" for="department">Center and Clinic :</label>
-                <input type="text" class="form-control text-center" id="department" value="{{center}}" readonly>
-            </div>
+<div class="row justify-content-center">
+    <div class="col-9 max-width-800">
+        <div class="form-group d-flex justify-content-between align-items-center">
+            <label class="col-auto mr-0 pl-0" for="department">Center and Clinic :</label>
+            <input type="text" class="form-control text-center max-width-373" id="department" value="{{center}}" readonly>
         </div>
     </div>
+</div>
 
-    <div class="row justify-content-center">
-        <div class="col-9 d-flex justify-content-center">
-            <div class="col-9 form-group d-flex flex-column flex-md-row align-items-center">
-                <label class="col-auto mb-2 mb-md-0" for="dateTime">Appointment Time :</label>
-                <input type="text" class="form-control text-center" id="dateTime" value="{{ date | date: 'mediumDate' }} : {{ time }}" readonly>
-            </div>
+<div class="row justify-content-center">
+    <div class="col-9 max-width-800">
+        <div class="form-group d-flex justify-content-between align-items-center">
+            <label class="col-auto mr-0 pl-0" for="dateTime">Appointment Time :</label>
+            <input type="text" class="form-control text-center max-width-373" id="dateTime" value="{{ date | date: 'mediumDate' }} : {{ time }}" readonly>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-9 d-flex justify-content-center">
-            <button style="background-color: #b8001f; color: white;" class="btn btn-primary mt-3" (click)="submitAppointment()">Confirm</button>
-        </div>
-    </div>
-    <div style="height: 40px"></div>
-    
+</div>
 
-    
+<div class="row justify-content-center">
+    <div class="col-9 d-flex justify-content-between">
+        <button class="btn buttons btn-secondary mt-3" (click)="goBack()">Back</button>
+        <button class="btn buttons btn-danger mt-3" (click)="submitAppointment()">Confirm</button>
+    </div>
+</div>
+
+<div style="height: 40px"></div>
+
 <app-footer></app-footer>

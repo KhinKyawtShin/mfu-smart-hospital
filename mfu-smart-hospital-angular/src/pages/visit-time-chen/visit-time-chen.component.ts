@@ -40,6 +40,8 @@ export class VisitTimeChenComponent {
   center: string | null = null; // Change to string
   doctor: string | null = null;  // Change to string
   doctorId: string | null = null;
+  minDate: Date = new Date();
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -54,7 +56,8 @@ export class VisitTimeChenComponent {
       this.doctor = params['doctor'] || null;
       this.doctorId = params['doctorId'] || null;
       console.log('Selected DoctorId:', this.doctorId); //
- //
+      this.selectedDate = new Date();
+      this.onDateChange({ value: this.selectedDate });
     });
     this.fetchQueueByDoctorName();
     this.generateAvailableTimes();

@@ -6,6 +6,7 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-confirm-appointment',
   standalone: true,
@@ -24,7 +25,7 @@ export class ConfirmAppointmentComponent implements OnInit {
   queueNumber: number=1009;
   info: any;
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private userService: UserService) {}
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private userService: UserService,private location: Location) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -37,6 +38,10 @@ export class ConfirmAppointmentComponent implements OnInit {
       console.log('Selected Date:', this.date); // 
       console.log('Selected Time:', this.time); //
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   /*
