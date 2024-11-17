@@ -3,79 +3,135 @@ import { HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/co
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-admin-view-appointment',
   standalone: true,
-  imports: [AdminHeaderComponent, CommonModule, HttpClientModule, FormsModule],
+  imports: [AdminHeaderComponent, CommonModule, HttpClientModule, FormsModule, MatSelectModule, MatOptionModule],
   providers: [DatePipe],
   templateUrl: './admin-view-appointment.component.html',
   styleUrl: './admin-view-appointment.component.css'
 })
-export class AdminViewAppointmentComponent implements OnInit{
+
+export class AdminViewAppointmentComponent implements OnInit {
   appointments: any[] = [];
-  filteredAppointments: any[] = []; 
+  filteredAppointments: any[] = [];
   searchTerm: string = '';
-  url = `http://localhost:1337/api/queues`;
+  departments: any[] = [];
+  doctors: any[] = [];
+  selectedDepartment: string | null = null;
+  selectedDoctor: string | null = null;
 
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    console.log('Initializing AdminViewAppointmentComponent');
-    this.fetchAppointmentData();
-}
-
-fetchAppointmentData(): void {
-  this.http.get<any>('http://localhost:1337/api/queues?populate=users_permissions_user').subscribe({
-    next: (response) => {
-      if (response && response.data && response.data.length > 0) {
-        const queueData = response.data;
-        this.appointments = queueData.map((queue: any) => ({
-          id: queue.id,
-          documentId: queue.documentId,
-          patientName: queue.users_permissions_user?.username || 'Unknown',
-          queueTime: queue.queueTime,
-          queueNumber: queue.queueNumber,
-          status: 'Pending'
-        }));
-
-        this.filteredAppointments = [...this.appointments];
-      } else {
-        console.warn('No data available in the API response.');
-      }
-    },
-    error: (err) => {
-      console.error('Error fetching data:', err);
-    }
-  });
-}
-
-search(): void {
-  if (this.searchTerm) {
-    this.filteredAppointments = this.appointments.filter(queue =>
-      queue.patientName.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-  } else {
-    this.filteredAppointments = [...this.appointments];
+      this.fetchDepartments();
+      this.fetchAppointmentData();
   }
-}
 
-editAppointment(): void{
-//write later
-}
+  // Fetch all departments
+  fetchDepartments(): void {
+      this.http.get<any>('http://localhost:1337/api/departments').subscribe({
+          next: (response) => {
+              this.departments = response.data.map((dept: any) => ({
+                  id: dept.id,
+                  name: dept.name
+              }));
+          },
+          error: (err) => {
+              console.error('Error fetching departments:', err);
+          }
+      });
+  }
 
-deleteAppointment(documentId: string): void {
-  console.log({documentId});
-  this.http.delete(`${this.url}/${documentId}`).subscribe({
-    next: () => {
-      this.appointments = this.appointments.filter(queue => queue.documentId !== documentId);
-      this.filteredAppointments = this.filteredAppointments.filter(queue => queue.documentId !== documentId);
-      console.log('Appointment deleted successfully');
-    },
-    error: (err) => {
-      console.error('Error deleting appointment:', err);
+  // Fetch doctors based on selected department
+  onDepartmentChange(event: any): void {
+    this.selectedDepartment = event.value;
+    console.log('Selected Department ID:', this.selectedDepartment);
+    
+    // Fetch doctors when a department is selected
+    if (this.selectedDepartment) {
+      this.http.get<any>(`http://localhost:1337/api/doctors?populate=department`).subscribe({
+        next: (response) => {
+          this.doctors = response.data.filter((doc: any) => doc.department.id === this.selectedDepartment);
+          console.log('Filtered Doctors:', this.doctors); // Debugging doctors list
+        },
+        error: (err) => {
+          console.error('Error fetching doctors:', err);
+        }
+      });
+    } else {
+      this.doctors = []; // Reset doctors if no department is selected
     }
-  });
+    this.filterAppointments(); // Re-filter appointments after department change
+  }
+  
+  
+  // Filter appointments when doctor is selected
+  onDoctorChange(event: any): void {
+    this.selectedDoctor = event.value;
+    this.filterAppointments(); // Re-filter appointments after doctor change
+  }
+
+
+  // Fetch all appointments
+  fetchAppointmentData(): void {
+      this.http.get<any>('http://localhost:1337/api/queues?populate[doctor][populate]=department&populate=users_permissions_user').subscribe({
+          next: (response) => {
+              this.appointments = response.data.map((queue: any) => ({
+                  id: queue.id,
+                  documentId: queue.documentId,
+                  patientName: queue.users_permissions_user?.username || 'Unknown',
+                  queueTime: queue.queueTime,
+                  queueNumber: queue.queueNumber,
+                  doctorId: queue.doctor?.id || null, 
+                  departmentId: queue.doctor?.department?.id || null,
+              }));
+              this.filteredAppointments = [...this.appointments];
+          },
+          error: (err) => {
+              console.error('Error fetching appointments:', err);
+          }
+      });
+  }
+
+  // Filter appointments based on department, doctor, and search term
+  filterAppointments(): void {
+    this.filteredAppointments = this.appointments.filter(appointment =>
+        (!this.selectedDepartment || appointment.departmentId === this.selectedDepartment) &&
+        (!this.selectedDoctor || appointment.doctorId === this.selectedDoctor) &&
+        (!this.searchTerm || appointment.patientName.toLowerCase().includes(this.searchTerm.toLowerCase()))
+    );
+}
+
+  // Delete appointment
+  deleteAppointment(documentId: string): void {
+      this.http.delete(`http://localhost:1337/api/queues/${documentId}`).subscribe({
+          next: () => {
+              this.appointments = this.appointments.filter(queue => queue.documentId !== documentId);
+              this.filteredAppointments = this.filteredAppointments.filter(queue => queue.documentId !== documentId);
+              console.log('Appointment deleted successfully');
+          },
+          error: (err) => {
+              console.error('Error deleting appointment:', err);
+          }
+      });
+  }
+
+  //search function
+  search(): void {
+    if (this.searchTerm) {
+        this.filterAppointments(); // This will integrate department, doctor, and search term filtering
+    } else {
+        this.filteredAppointments = [...this.appointments]; // Reset to all appointments if search term is empty
+    }
+}
+
+//goBack function
+goBack(): void {
+  this.router.navigate(['/admin-doctor']);
 }
 }

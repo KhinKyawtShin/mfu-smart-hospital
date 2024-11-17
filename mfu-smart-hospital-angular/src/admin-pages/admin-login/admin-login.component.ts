@@ -33,7 +33,7 @@ export class AdminLoginComponent {
         this.http.get<any>(`http://localhost:1337/api/users/${response.user.id}?populate=role`).subscribe({
           next: (userDetails) => {
             if (userDetails.role && userDetails.role.name === 'Admin') {
-              this.router.navigate(['/admin-centers']); // Navigate to admin dashboard
+              this.router.navigate(['/admin-view-appointment']); // Navigate to admin dashboard
             } else {
               this.errorMessage = 'You do not have admin access.';
               console.error(userDetails.username + ' does not have admin access. Your role is ' + userDetails.role?.name);

@@ -1,18 +1,53 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=edit" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back_ios" />
 
 <app-admin-header></app-admin-header>
 <br>
-<div class="search-box">
-    <div class="col-auto">
-        <input type="search" class="form-control" id="searchAppointment" [(ngModel)]="searchTerm" placeholder="Search by Patient Name">
-    </div>
-    <button class="search-button" (click)="search()">
-        <span class="material-icons">search</span> Search
-    </button>
+
+<!-- Back Botton and Search Box and Filters -->
+<div class="top-bar">
+        <div class="back_button" (click)="goBack()">
+            <span class="material-symbols-outlined">
+                arrow_back_ios
+            </span>
+        </div>
+
+        <div class="col-auto">
+            <input type="search" class="form-control" id="searchAppointment" [(ngModel)]="searchTerm" placeholder="Search by Patient Name">
+        </div>
+
+        <button class="search-button" (click)="search()">
+            <span class="material-icons">search</span> Search
+        </button>
+
+        <div class="filters">
+            <!-- Department Dropdown -->
+            <mat-form-field>
+                <mat-label>Department</mat-label>
+                <mat-select [(value)]="selectedDepartment" (selectionChange)="onDepartmentChange($event)">
+                    <mat-option [value]="null">None selected</mat-option>
+                    <mat-option *ngFor="let department of departments" [value]="department.id">
+                        {{ department.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        
+            <!-- Doctor Dropdown -->
+            <mat-form-field>
+                <mat-label>Doctor</mat-label>
+                <mat-select [(value)]="selectedDoctor" (selectionChange)="onDoctorChange($event)" [disabled]="!selectedDepartment">
+                    <mat-option [value]="null">None selected</mat-option>
+                    <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">
+                        {{ doctor.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 </div>
 
+<!-- Appointment Table -->
 <div class="table-container">
     <table class="table">
         <thead>
@@ -21,7 +56,6 @@
                 <th>Patient</th>
                 <th>Time</th>
                 <th>Queue No.</th>
-                <th>Status</th>
                 <th>Edit</th>
             </tr>
         </thead>
@@ -31,7 +65,6 @@
                 <td>{{ queue.patientName }}</td>
                 <td>{{ queue.queueTime | date:'shortTime' }}</td>
                 <td>{{ queue.queueNumber }}</td>
-                <td>{{ queue.status }}</td>
                 <td class="two-icons">
                     <div class="delete-button">
                         <span (click)="deleteAppointment(queue.documentId)" class="material-symbols-outlined">delete</span>
