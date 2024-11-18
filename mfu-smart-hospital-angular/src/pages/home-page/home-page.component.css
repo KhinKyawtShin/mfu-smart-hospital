@@ -18,8 +18,17 @@
   background-color: #ffffff;
 }
 
-.text-primary {
-  color:  #b8001f;
+.header-1{
+  color: black !important;
+  font-weight: 400 !important;
+}
+
+.header-2 {
+  color: black !important;
+}
+
+.doctor-name {
+  color: #0056b3;
 }
 
 .text-secondary {
@@ -38,7 +47,7 @@
 
 /* Button Styling */
 .btn-danger {
-  background-color: #b8001f;
+  background-color: #b8001f;/*#b8001f*/
   border: none;
   font-size: 1.1em;
   padding: 10px 0;
@@ -48,7 +57,7 @@
 }
 
 .btn-danger:hover {
-  background-color: #880016;
+  background-color: #880016;/*#880016*/
   transform: scale(1.05);
 }
 

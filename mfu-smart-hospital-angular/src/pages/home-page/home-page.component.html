@@ -5,7 +5,7 @@
 
 <div class="spacer"></div>
 <div class="container text-center mb-4">
-  <h2 class="text-primary font-weight-bold">Appointment Details</h2>
+  <h2 class="text-primary font-weight-bold header-1">Appointment Details</h2>
 </div>
 
 <div class="container d-flex justify-content-center">
@@ -14,8 +14,8 @@
     <!-- Appointment Information Section -->
     <div *ngIf="queue; else noAppointment" class="row col-12 mb-3 justify-content-between align-items-center appointment-info border-black p-4 rounded">
       <div class="col-8">
-        <h3 class="text-primary mb-3">Reminder</h3>
-        <p class="lead">You have an appointment with <strong>{{ queue?.doctor?.name }}</strong></p>
+        <h3 class="text-primary mb-3 header-2">Reminder</h3>
+        <p class="lead">You have an appointment with <strong class="doctor-name">{{ queue?.doctor?.name }}</strong></p>
         <p class="text-secondary">
           on {{ queue?.queueTime | date: 'fullDate' }} at {{ queue?.queueTime | date: 'shortTime' }}
         </p>
