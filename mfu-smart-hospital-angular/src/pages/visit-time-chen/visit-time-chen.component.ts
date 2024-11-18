@@ -30,9 +30,6 @@ import { Location } from '@angular/common';
   styleUrl: './visit-time-chen.component.css',
 })
 export class VisitTimeChenComponent {
-  selectedCenter: string | null = null;
-  selectedDoctor: string | null = null;
-  selectedDoctorId: string | null = null;
   bookedTimesByDate: { [date: string]: Set<string> } = {}; // Updated to store booked times by date
   availableTimes: { time: string; booked: boolean }[] = [];
   selectedDate: Date | null = null;
@@ -55,12 +52,11 @@ export class VisitTimeChenComponent {
       this.center = params['center'] || null;
       this.doctor = params['doctor'] || null;
       this.doctorId = params['doctorId'] || null;
-      console.log('Selected DoctorId:', this.doctorId); //
-      this.selectedDate = new Date();
-      this.onDateChange({ value: this.selectedDate });
+      console.log('Selected DoctorId:', this.doctorId); 
     });
     this.fetchQueueByDoctorName();
     this.generateAvailableTimes();
+    this.onDateChange({ value: new Date()})
   }
 
   // Fetch booked slots by doctor and organize by date
@@ -105,36 +101,54 @@ export class VisitTimeChenComponent {
   
 
   // Generate time slots and mark them as booked or available based on the selected date
+  // Generate time slots for a day
   generateAvailableTimes(): void {
     const startHour = 9;
     const endHour = 17;
     const interval = 20;
+  
     this.availableTimes = [];
-
+  
     for (let hour = startHour; hour < endHour; hour++) {
       for (let minute = 0; minute < 60; minute += interval) {
-        const time = `${hour.toString().padStart(2, '0')}:${minute
-          .toString()
-          .padStart(2, '0')}`;
+        const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
         this.availableTimes.push({ time, booked: false });
       }
     }
   }
-
-  // Update available times based on selected date
+  
+  // Update available times to remove only past times if the selected date is today
   updateAvailableTimes(selectedDate: string): void {
     const bookedTimesForDate = this.bookedTimesByDate[selectedDate] || new Set();
-    this.availableTimes = this.availableTimes.map((slot) => ({
-      ...slot,
-      booked: bookedTimesForDate.has(slot.time),
-    }));
+  
+    // Check if the selected date is today
+    const now = new Date();
+    const isToday = selectedDate === now.toISOString().split('T')[0];
+    const currentTime = now.getHours() * 60 + now.getMinutes();
+    
+    this.generateAvailableTimes();
+    this.availableTimes = this.availableTimes.map(slot => {
+      const [hour, minute] = slot.time.split(':').map(Number);
+      const slotTimeInMinutes = hour * 60 + minute;
+      const isPastTime = isToday && slotTimeInMinutes < currentTime;
+  
+      return {
+        ...slot,
+        booked: bookedTimesForDate.has(slot.time),
+        isPast: isPastTime
+      };
+    }).filter(slot => !slot.isPast); // Remove past times only if today
+  
+    console.log('Available times after update:', this.availableTimes);
   }
+
+  
 
   // Handle date change, update available slots based on the selected date
   onDateChange(event: any): void {
     this.selectedDate = event.value;
     this.selectedSlot = null; // Clear selected slot when date changes
-  
+    console.log("selected date in date change: ",this.selectedDate)
     if (this.selectedDate) {
       // Convert the selected date to a local date string (YYYY-MM-DD format) without timezone offset
       const selectedDateString = new Date(
