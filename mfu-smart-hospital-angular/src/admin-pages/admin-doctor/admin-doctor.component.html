@@ -1,0 +1,19 @@
+<app-admin-header></app-admin-header>
+
+<div class="doctors-container">
+   <h2>{{selectedCenter}} Center</h2>
+   <div class="doctor-cards">
+        <app-card
+            *ngFor="let doctor of filteredDoctors"
+            [name]="doctor.name"
+            [imageUrl]="doctor.imageUrl"
+            [isSelected]="selectedDoctor === doctor.name"
+            (click)="chooseDoctor(doctor.name)">
+        </app-card>
+    </div>
+
+   <div class="row">
+       <button class="back-button" (click)="goBack()">Back</button>
+       <button class="next-button" (click)="goNext()">Next</button>
+   </div>
+</div>

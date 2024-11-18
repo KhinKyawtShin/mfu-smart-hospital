@@ -85,14 +85,15 @@
     justify-content: space-between;
   }
   
-  .row button {
+.row button {
     width: 150px;
     height: 55px;
     border: none;
     border-radius: 5px;
     font-size: 20px;
     font-weight: 500;
-  }
+}
+
   
   /* Ensure that the mat-datepicker background is white */
   ::ng-deep .mat-calendar {

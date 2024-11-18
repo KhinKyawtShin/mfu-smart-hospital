@@ -1,40 +1,47 @@
 <!-- Bootstrap CSS (make sure to include Bootstrap in your project) -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <app-header></app-header>
-<div style="height: 60px;"></div>
-<div class="container d-flex  justify-content-center">
-  <div class="row col-12 justify-content-center whole-content">
-    <div style="padding-top: 20px; padding-bottom: 20px;" class="row col-12 mb-2 justify-content-between align-items-center appointment-info border-black ">
+
+<div class="spacer"></div>
+<div class="container text-center mb-4">
+  <h2 class="text-primary font-weight-bold header-1">Appointment Details</h2>
+</div>
+
+<div class="container d-flex justify-content-center">
+  <div class="row col-10 justify-content-center whole-content rounded shadow-lg p-4 bg-light">
+    
+    <!-- Appointment Information Section -->
+    <div *ngIf="queue; else noAppointment" class="row col-12 mb-3 justify-content-between align-items-center appointment-info border-black p-4 rounded">
       <div class="col-8">
-        <div class="row">
-          <div class="col-12 mb-2">
-            <h3>Reminder</h3>
-          </div>
-          <div class="col-12">
-            You have an appointment with {{ queue?.doctor?.name }} on {{ queue?.queueTime | date: 'fullDate' }} at {{ queue?.queueTime | date: 'shortTime' }}
-          </div>
-        </div>
+        <h3 class="text-primary mb-3 header-2">Reminder</h3>
+        <p class="lead">You have an appointment with <strong class="doctor-name">{{ queue?.doctor?.name }}</strong></p>
+        <p class="text-secondary">
+          on {{ queue?.queueTime | date: 'fullDate' }} at {{ queue?.queueTime | date: 'shortTime' }}
+        </p>
       </div>
       <div class="col-3 d-flex justify-content-end">
-        <img class="rounded-circle doctor-image" src="assets/doctor.jpg" alt="Doctor">
+        <img class="rounded-circle doctor-image shadow" [src]="queue?.doctorImageUrl" alt="{{ queue?.doctor?.name }}">
       </div>
     </div>
-    <div class="d-flex col-12 justify-content-between mt-2 g-0"> <!-- Added justify-content-between and mt-2 for spacing -->
-      <div class=" d-flex flex-grow-1 border-black me-1 align-items-center justify-content-center">
-        <h3 class="btn" (click)="makeAppointment()" style="margin:0px">Make An Appointment</h3>
+
+    <!-- No Appointment Message -->
+    <ng-template #noAppointment>
+      <div class="col-12 text-center">
+        <h3 class="text-secondary">No upcoming appointments</h3>
+        <p class="text-muted">You currently have no appointments scheduled.</p>
       </div>
-      <div class="d-flex flex-grow-1 border-black ms-1 align-items-center justify-content-center">
-        <h3 class="btn" (click)="makeMedicalCheckup()" style="margin:0px">Medical Checkup</h3>
-      </div>
+    </ng-template>
+
+    <!-- Action Buttons Section -->
+    <div class="d-flex col-12 justify-content-between mt-3">
+      <button class="btn btn-danger flex-fill me-2" (click)="makeAppointment()">Make An Appointment</button>
+      <button class="btn btn-primary flex-fill ms-2" (click)="goToQueuePage()">View Patient Queue</button>
     </div>
-    <!-- Noelle added this one XD -->
-    <!--//////////////////////////-->
-    <div class="text-center mt-4">
-      <button class="btn btn-primary" (click)="goToQueuePage()">View Patient Queue</button>
-    </div>
-    <!--//////////////////////////-->
+
   </div>
 </div>
-<div style="height: 60px;"></div>
-<app-footer></app-footer>
 
+<div style="height: 150px" class="spacer"></div>
+
+<app-footer></app-footer>

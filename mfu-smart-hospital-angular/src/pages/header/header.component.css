@@ -114,6 +114,7 @@
 /*dorpdown menu*/
 .dropdown-menu {
   position: absolute;
+  left: auto;
   right: 15px;
   top: 80px; /* Adjust to align with the user profile */
   background-color: #fff;

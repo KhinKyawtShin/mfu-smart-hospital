@@ -1,0 +1,15 @@
+.max-width-800{
+    max-width: 800px;
+}
+
+.max-width-373{
+    max-width: 373px;
+}
+.buttons {
+    width: 120px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}

@@ -1,41 +1,91 @@
-.square {
-  background-color: blue;  /* Background color */
-  height: 100px;           /* Fixed height for squares */
-  /* The width will be controlled by the Bootstrap grid */
-}
-.doctor-image{
-  height:150px;
-  width:150px;
-  object-fit: cover;
+/* General spacing */
+.spacer {
+  height: 120px;
 }
 
-.border-black{
-  border: 1px solid black;
-  padding: 10px;
+/* Container Styling */
+.whole-content {
+  max-width: 800px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Appointment Information Section */
+.appointment-info {
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.header-1{
+  color: black !important;
+  font-weight: 400 !important;
+}
+
+.header-2 {
+  color: black !important;
+}
+
+.doctor-name {
+  color: #0056b3;
+}
+
+.text-secondary {
+  color: #6c757d;
+}
+
+/* Doctor Image Styling */
+.doctor-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid #0056b3;
+  padding: 3px;
+  border-radius: 50%;
+}
+
+/* Button Styling */
+.btn-danger {
+  background-color: #b8001f;/*#b8001f*/
+  border: none;
+  font-size: 1.1em;
+  padding: 10px 0;
+  color: #fff;
+  transition: background-color 0.3s, transform 0.2s;
   border-radius: 5px;
 }
 
-.whole content{
-  max-width: 1000px;
+.btn-danger:hover {
+  background-color: #880016;/*#880016*/
+  transform: scale(1.05);
 }
 
 .btn-primary {
-  margin-top: 30px;
-  margin-bottom: 100px;
-  padding: 10px 20px;
-  background-color: #B8001F;
-  color: #fff;
+  background-color: #0056b3;
   border: none;
-  border-radius: 4px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 1.1em;
+  padding: 10px 0;
+  color: #fff;
+  transition: background-color 0.3s, transform 0.2s;
+  border-radius: 5px;
 }
 
 .btn-primary:hover {
-  background-color: #880016;
+  background-color: #004494;
+  transform: scale(1.05);
 }
 
+/* H3 Button Style (if using h3 as a clickable element) */
 h3 .btn {
   cursor: pointer;
+}
+
+/* Box Shadow */
+.shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
 }

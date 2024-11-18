@@ -435,37 +435,6 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
-  collectionName: 'patients';
-  info: {
-    description: '';
-    displayName: 'Patient';
-    pluralName: 'patients';
-    singularName: 'patient';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.Email;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::patient.patient'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    password: Schema.Attribute.Password;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiQueueQueue extends Struct.CollectionTypeSchema {
   collectionName: 'queues';
   info: {
@@ -495,37 +464,6 @@ export interface ApiQueueQueue extends Struct.CollectionTypeSchema {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-  };
-}
-
-export interface ApiVisitTimeVisitTime extends Struct.CollectionTypeSchema {
-  collectionName: 'visit_times';
-  info: {
-    description: '';
-    displayName: 'Visit-time';
-    pluralName: 'visit-times';
-    singularName: 'visit-time';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    booked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    date: Schema.Attribute.Date;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::visit-time.visit-time'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    time: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -1036,9 +974,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::department.department': ApiDepartmentDepartment;
       'api::doctor.doctor': ApiDoctorDoctor;
-      'api::patient.patient': ApiPatientPatient;
       'api::queue.queue': ApiQueueQueue;
-      'api::visit-time.visit-time': ApiVisitTimeVisitTime;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
