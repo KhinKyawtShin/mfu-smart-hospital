@@ -39,7 +39,7 @@ export class HomePageComponent implements OnInit {
   }
 
   fetchQueueByPatientData(): void {
-    const apiUrl = `http://localhost:1337/api/queues?populate[users_permissions_user]=*&populate[doctor]=*&filters[users_permissions_user][username][$eq]=${this.patientName}`;
+    const apiUrl = `http://localhost:1337/api/queues?populate[users_permissions_user]=*&populate[doctor]=*&filters[users_permissions_user][username][$eq]=${this.patientName}&sort[queueTime]=asc`;
     
     this.http.get<any>(apiUrl).subscribe({
       next: (data) => {
