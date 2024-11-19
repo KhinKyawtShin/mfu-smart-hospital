@@ -1,0 +1,27 @@
+<app-header></app-header>
+<div class="container my-5">
+  <div class="row g-4 justify-content-center">
+    <div class="col-5 d-flex align-items-center" *ngFor="let blog of blogs">
+      <div class="card w-100">
+        <!-- Card Image -->
+        <img [src]="blog.imageUrl" class="card-img-top" alt="Blog Image" />
+
+        <!-- Card Content -->
+        <div class="card-body">
+          <span class="badge bg-primary">{{ blog.category }}</span>
+          <h5 class="card-title mt-2">{{ blog.title }}</h5>
+          <p class="card-text">{{ blog.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+
+
+
+
+
+
+

@@ -15,6 +15,7 @@ import { ConfirmAppointmentComponent } from '../pages/confirm-appointment/confir
 import { VisitTimeChenComponent } from '../pages/visit-time-chen/visit-time-chen.component';
 import { AdminDoctorComponent } from '../admin-pages/admin-doctor/admin-doctor.component';
 import { ViewAllAppointmentsComponent } from '../pages/view-all-appointments/view-all-appointments.component';
+import { BlogComponent } from '../pages/blog/blog.component';
 //import { HomeComponent } from '../pages/';
 //import { Service } from '../pages/';
 //import { PatientRecord } from '../pages/';
@@ -37,6 +38,8 @@ export const routes: Routes = [
     { path: 'admin-doctor', component: AdminDoctorComponent},
     { path: 'confirm-appointment', component: ConfirmAppointmentComponent},
     { path: 'visit-time-chen', component: VisitTimeChenComponent},
-    { path: 'view-all-appointments', component: ViewAllAppointmentsComponent}
+    { path: 'view-all-appointments', component: ViewAllAppointmentsComponent},
+    { path: 'blog-page', component: BlogComponent},
+    { path: '', redirectTo: '/home-page', pathMatch: 'full' },
 ];
 
