@@ -14,6 +14,7 @@ import { DoctorComponent } from '../pages/doctor/doctor.component';
 import { ConfirmAppointmentComponent } from '../pages/confirm-appointment/confirm-appointment.component';
 import { VisitTimeChenComponent } from '../pages/visit-time-chen/visit-time-chen.component';
 import { AdminDoctorComponent } from '../admin-pages/admin-doctor/admin-doctor.component';
+import { ChatbotComponent } from '../pages/chatbot/chatbot.component';
 //import { HomeComponent } from '../pages/';
 //import { Service } from '../pages/';
 //import { PatientRecord } from '../pages/';
@@ -35,6 +36,7 @@ export const routes: Routes = [
     { path: 'doctor', component: DoctorComponent},
     { path: 'admin-doctor', component: AdminDoctorComponent},
     { path: 'confirm-appointment', component: ConfirmAppointmentComponent},
-    { path: 'visit-time-chen', component: VisitTimeChenComponent}
+    { path: 'visit-time-chen', component: VisitTimeChenComponent},
+    { path: 'chatbot', component: ChatbotComponent}
 ];
 

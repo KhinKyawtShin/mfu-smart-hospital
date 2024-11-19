@@ -7,12 +7,13 @@ import { Router } from '@angular/router';
 import { QueueService } from '../../services/queue.service';
 import { DatePipe } from '@angular/common';
 import { UserService } from '../../services/user.service';
+import { ChatbotComponent } from "../chatbot/chatbot.component";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
   providers: [DatePipe,UserService], //Noelle added this one XD
-  imports: [HeaderComponent, FooterComponent, HttpClientModule, CommonModule], // Add CommonModule here
+  imports: [HeaderComponent, FooterComponent, HttpClientModule, CommonModule, ChatbotComponent], // Add CommonModule here
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
