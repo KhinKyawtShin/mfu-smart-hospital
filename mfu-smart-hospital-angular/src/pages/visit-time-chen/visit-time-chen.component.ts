@@ -104,7 +104,7 @@ export class VisitTimeChenComponent {
   // Generate time slots for a day
   generateAvailableTimes(): void {
     const startHour = 9;
-    const endHour = 17;
+    const endHour = 19;
     const interval = 20;
   
     this.availableTimes = [];
