@@ -8,10 +8,11 @@ import { UserService } from '../../services/user.service';
   providers: [UserService],
   imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  userName : string = '';
+  userName: string = '';
+  isDropdownOpen: boolean = false;
 
   constructor(private userService: UserService) {}
 
@@ -25,16 +26,26 @@ export class HeaderComponent implements OnInit {
       console.warn('No user is logged in.');
       this.userName = 'null';
     }
-}
 
-  currentLanguage: string = 'EN';
-  isDropdownOpen: boolean = false;
-
-  switchLanguage(language: string) {
-    this.currentLanguage = language;
+    this.loadGoogleTranslateScript();
   }
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  private loadGoogleTranslateScript(): void {
+    const script = document.createElement('script');
+    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Initialize Google Translate
+    (window as any).googleTranslateElementInit = () => {
+      new (window as any).google.translate.TranslateElement(
+        { pageLanguage: 'en', includedLanguages: 'en,th' },
+        'google_translate_element'
+      );
+    };
   }
 }
