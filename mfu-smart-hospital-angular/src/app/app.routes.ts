@@ -14,6 +14,8 @@ import { DoctorComponent } from '../pages/doctor/doctor.component';
 import { ConfirmAppointmentComponent } from '../pages/confirm-appointment/confirm-appointment.component';
 import { VisitTimeChenComponent } from '../pages/visit-time-chen/visit-time-chen.component';
 import { AdminDoctorComponent } from '../admin-pages/admin-doctor/admin-doctor.component';
+import { ViewAllAppointmentsComponent } from '../pages/view-all-appointments/view-all-appointments.component';
+import { BlogComponent } from '../pages/blog/blog.component';
 import { ChatbotComponent } from '../pages/chatbot/chatbot.component';
 //import { HomeComponent } from '../pages/';
 //import { Service } from '../pages/';
@@ -36,6 +38,10 @@ export const routes: Routes = [
     { path: 'doctor', component: DoctorComponent},
     { path: 'admin-doctor', component: AdminDoctorComponent},
     { path: 'confirm-appointment', component: ConfirmAppointmentComponent},
+    { path: 'visit-time-chen', component: VisitTimeChenComponent},
+    { path: 'view-all-appointments', component: ViewAllAppointmentsComponent},
+    { path: 'blog-page', component: BlogComponent},
+    { path: '', redirectTo: '/home-page', pathMatch: 'full' },
     { path: 'visit-time-chen', component: VisitTimeChenComponent},
     { path: 'chatbot', component: ChatbotComponent}
 ];

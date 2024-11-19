@@ -20,7 +20,6 @@ import { ChatbotComponent } from "../chatbot/chatbot.component";
 export class HomePageComponent implements OnInit {
   queue: any;
 
-
   constructor(private http: HttpClient, private router: Router, private queueService: QueueService, private userService: UserService) {}
   patientName: string = '';
   
@@ -101,6 +100,10 @@ export class HomePageComponent implements OnInit {
 
   makeMedicalCheckup(): void {
     this.router.navigate(['/visit-time']);
+  }
+
+  gotoAppointmentsPage(): void{
+    this.router.navigate(['/view-all-appointments'])
   }
 }
 

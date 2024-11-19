@@ -1,0 +1,49 @@
+/* General Container Styles */
+.container {
+  margin: auto;
+  max-width: 1200px;
+
+}
+
+/* Card Styles */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 40px 10px 40px 10px;
+}
+
+.card-body{
+  margin: 4px 20px 4px 20px;
+}
+
+.card-img-top {
+  height: 200px; /* Set fixed height for images */
+  object-fit: cover; /* Ensure images are cropped correctly */
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  background-color: #007bff;
+  color: white;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.row.g-4 {
+  gap: 20px; /* Add spacing between rows */
+}
+
+
