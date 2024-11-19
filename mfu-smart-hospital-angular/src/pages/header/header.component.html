@@ -1,4 +1,3 @@
-<!-- navbar.component.html -->
 <nav class="navbar">
   <div class="navbar-brand">
     <img src="assets/mfu_logo 1.png" alt="Logo" class="navbar-logo">
@@ -10,11 +9,14 @@
     </div>
   </div>
   <div class="navbar-menu">
+    <!--
+    language switcher starts
     <div class="language-switcher">
-      <span class="lang-option" [class.active]="currentLanguage === 'EN'" (click)="switchLanguage('EN')">EN</span>
+      <span class="lang-option" [class.active]="currentLanguage === 'EN'" (click)="switchLanguage('en')">EN</span>
       <span class="divider">|</span>
-      <span class="lang-option" [class.active]="currentLanguage === 'TH'" (click)="switchLanguage('TH')">TH</span>
+      <span class="lang-option" [class.active]="currentLanguage === 'TH'" (click)="switchLanguage('th')">TH</span>
     </div>
+    -->
     <div class="nav-links">
       <a href="/home-page" class="text-dark">Home</a>
       <a href="/blog-page" class="text-dark">Blog</a>
@@ -33,3 +35,4 @@
     </div>
   </div>
 </nav>
+<div id="google_translate_element" ></div>
