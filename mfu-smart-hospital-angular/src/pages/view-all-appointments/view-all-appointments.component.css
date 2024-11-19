@@ -1,0 +1,120 @@
+/* General Spacing */
+.spacer {
+    height: 60px;
+  }
+  
+  /* Main Content Styling */
+
+  
+  /* Appointment Information Styling */
+  .appointment-info {
+    max-width: 800px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #ffffff;
+  }
+  
+  .header-1 {
+    color: black !important;
+    font-weight: 400 !important;
+  }
+  
+  .header-2 {
+    color: black !important;
+  }
+  
+  .doctor-name {
+    color: #0056b3;
+  }
+  
+  .text-secondary {
+    color: #6c757d;
+  }
+  
+  /* Doctor Image Styling */
+  .doctor-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 2px solid #0056b3;
+    padding: 3px;
+    border-radius: 50%;
+  }
+  
+  /* Button Styling */
+  .btn-danger {
+    background-color: #b8001f;
+    border: none;
+    font-size: 1.1em;
+    padding: 10px 0;
+    color: #fff;
+    transition: background-color 0.3s, transform 0.2s;
+    border-radius: 5px;
+  }
+  
+  .btn-danger:hover {
+    background-color: #880016;
+    transform: scale(1.05);
+  }
+  
+  .btn-primary {
+    background-color: #0056b3;
+    border: none;
+    font-size: 1.1em;
+    padding: 10px 0;
+    color: #fff;
+    transition: background-color 0.3s, transform 0.2s;
+    border-radius: 5px;
+  }
+  
+  .btn-primary:hover {
+    background-color: #004494;
+    transform: scale(1.05);
+  }
+  
+  /* Box Shadow */
+  .shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .shadow-lg {
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Appointment Information Card Styling */
+.appointment-info {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+  }
+  
+  .doctor-name {
+    color: #0056b3;
+  }
+  
+  .doctor-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 3px solid #0056b3;
+    padding: 3px;
+  }
+  
+  /* No Appointment Message */
+  h3.text-secondary {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  .upcoming{
+    color: #b8001f;
+  }
+
+  .row button {
+    width: 150px;
+    height: 55px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}
+  
