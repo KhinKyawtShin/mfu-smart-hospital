@@ -16,6 +16,7 @@ import { VisitTimeChenComponent } from '../pages/visit-time-chen/visit-time-chen
 import { AdminDoctorComponent } from '../admin-pages/admin-doctor/admin-doctor.component';
 import { ViewAllAppointmentsComponent } from '../pages/view-all-appointments/view-all-appointments.component';
 import { BlogComponent } from '../pages/blog/blog.component';
+import { ChatbotComponent } from '../pages/chatbot/chatbot.component';
 //import { HomeComponent } from '../pages/';
 //import { Service } from '../pages/';
 //import { PatientRecord } from '../pages/';
@@ -41,5 +42,7 @@ export const routes: Routes = [
     { path: 'view-all-appointments', component: ViewAllAppointmentsComponent},
     { path: 'blog-page', component: BlogComponent},
     { path: '', redirectTo: '/home-page', pathMatch: 'full' },
+    { path: 'visit-time-chen', component: VisitTimeChenComponent},
+    { path: 'chatbot', component: ChatbotComponent}
 ];
 

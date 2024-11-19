@@ -1,0 +1,14 @@
+<div class="chatbot-icon" (click)="toggleChatbox()">
+    <mat-icon aria-hidden="false" fontIcon="chat"></mat-icon>
+  </div>
+  
+  <div class="chatbox" [ngClass]="{ open: chatboxOpen }">
+      <div class="header">
+        <h2>AI assistant</h2>
+        <h6 class="right-align">- Powered by OpenAI</h6>
+      </div>
+      <app-conversation class="chatbox-conversation" [messages]="messages"></app-conversation>
+      <div class="footer">
+        <app-prompt (textChange)="handlePromptChange($event)"></app-prompt>
+      </div>
+  </div>
