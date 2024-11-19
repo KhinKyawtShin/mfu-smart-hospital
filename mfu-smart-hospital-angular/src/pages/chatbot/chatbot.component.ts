@@ -21,7 +21,7 @@ import { IConversationMessage } from '../../interfaces/conversation-message';
 })
 export class ChatbotComponent {
   public messages: IConversationMessage[] = [];
-  chatboxOpen: boolean = true;
+  chatboxOpen: boolean = false;
 
   constructor(private chatBotService: ChatbotServiceService) {}
 
